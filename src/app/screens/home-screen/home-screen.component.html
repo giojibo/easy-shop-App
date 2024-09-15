@@ -1,9 +1,20 @@
-<app-navbar></app-navbar>
-<div class="container">
-    <h1>Bienvenido a EasyShop</h1>
-    <p>Esta aplicación web está diseñada para la visualización de una compra y venta de productos para una comunidad universitaria</p>
-    <button>Iniciar sesión</button>
-    <p>¿No tienes cuenta? </p>
 
-    
+  <div class="section-home">
+    <app-navbar></app-navbar>
+    <div class="body-home">
+      <!-- Home para el admin -->
+      <section class="home-admin" *ngIf="rol === 'administrador'">
+        <app-admin-screen></app-admin-screen>
+      </section>
+      <section class="home-vendedor" *ngIf="rol === 'vendedor'">
+        <app-clientes-screen></app-clientes-screen>
+      </section>
+      <section class="home-cliente" *ngIf="rol === 'cliente'">
+        <app-vendedores-screen></app-vendedores-screen>
+      </section>
+      
+      <section class="bienvenida" *ngIf="rol === ''">
+        <app-bienvenida></app-bienvenida>
+      </section>
+    </div>
   </div>

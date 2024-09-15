@@ -1,70 +1,84 @@
-.container {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  p {
-    color: #666;
-  }
-  
-  button {
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #004494;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropbtn {
-    background-color: #0056b3;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content button:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #004494;
-  }
+.wrapper{
+  width: 100vw;
+  //height: 100vh;
+}
+.bg-light{
+  background-color: #000000!important;
+}
+
+.navbar{
+  padding: 0 0 0 0!important;
+}
+
+.navbar-brand{
+  padding-left: 20px;
+  font-size: 28px;
+  font-family: Nexa;
+  text-align: center;
+  opacity: 1;
+  color: #FFFFFF;
+  margin: 0 0 0 0!important;
+}
+.nav-link{
+  font-size: 20px;
+  font-family: Nexa;
+  text-align: center;
+  opacity: 1;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin: 0 0 0 0!important;
+}
+
+li a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #0092B8;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  font-size: 20px;
+  font-family: Nexa;
+  text-align: center;
+  opacity: 1;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.active {
+  background-color: #03aed8;
+  margin: 0 0 0 0!important;
+}
+
+.bi-person-circle{
+  font-size: 20pt;
+  color: #FFFFFF;
+}
+.dropdown-toggle{
+  font-size: 20px;
+  color: #FFFFFF;
+  font-family: Nexa;
+  font-weight: bold;
+}
+.dropdown-menu[data-bs-popper] {
+  right: 0!important;
+  left: auto;
+}
+.navbar-toggler-icon{
+  color: #FFFFFF;
+}
+.navbar-toggler-icon {
+  vertical-align: 0;
+}
