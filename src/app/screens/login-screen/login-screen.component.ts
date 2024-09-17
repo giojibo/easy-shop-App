@@ -38,7 +38,7 @@ export class LoginScreenComponent implements OnInit{
     this.facadeService.login(this.username, this.password).subscribe(
       (response)=>{
         this.facadeService.saveUserData(response);
-        this.router.navigate([""]);
+        this.router.navigate(["home"]);
       }, (error)=>{
         alert("No se pudo iniciar sesión");
       }

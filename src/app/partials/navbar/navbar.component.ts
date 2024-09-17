@@ -24,8 +24,15 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    this.token = this.facadeService.getSessionToken();
     this.rol = this.facadeService.getUserGroup();
+      console.log("Rol user: ", this.rol);
+      //Validar que haya inicio de sesión
+      //Obtengo el token del login
+      this.token = this.facadeService.getSessionToken();
+      //El primer if valida si existe un parámetro en la URL
+      if(this.activatedRoute.snapshot.params['id'] != undefined){
+        this.editar = true;
+    }
   }
 
   public goRegistro_Vendedor()

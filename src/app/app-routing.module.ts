@@ -10,9 +10,11 @@ import { VendedoresScreenComponent } from './screens/vendedores-screen/vendedore
 import { ProductosScreenComponent } from './screens/productos-screen/productos-screen.component';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistrosScreenComponent } from './screens/registros-screen/registros-screen.component';
+import { BienvenidaComponent } from './screens/bienvenida/bienvenida.component';
 
 const routes: Routes = [
-  { path: '', component: HomeScreenComponent, pathMatch: 'full'},
+   { path: '', component: BienvenidaComponent, pathMatch: 'full'},
+  { path: 'home', component: HomeScreenComponent, pathMatch: 'full'},
   { path: 'login', component: LoginScreenComponent, pathMatch: 'full'},
   { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full'},
   { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full'},

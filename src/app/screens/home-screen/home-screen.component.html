@@ -6,15 +6,11 @@
       <section class="home-admin" *ngIf="rol === 'administrador'">
         <app-admin-screen></app-admin-screen>
       </section>
-      <section class="home-vendedor" *ngIf="rol === 'vendedor'">
+      <section class="home-cliente" *ngIf="rol === 'cliente'">
         <app-clientes-screen></app-clientes-screen>
       </section>
-      <section class="home-cliente" *ngIf="rol === 'cliente'">
+      <section class="home-vendedor" *ngIf="rol === 'vendedor'">
         <app-vendedores-screen></app-vendedores-screen>
-      </section>
-      
-      <section class="bienvenida" *ngIf="rol === ''">
-        <app-bienvenida></app-bienvenida>
       </section>
     </div>
   </div>
