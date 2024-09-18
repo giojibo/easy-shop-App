@@ -35,14 +35,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  public goRegistro_Vendedor()
-  {
-    this.router.navigate(["registro-vendedor"]);
+  public registrar(){
+    this.router.navigate(["registros"]);
   }
-  public goRegistro_Cliente()
-  {
-    this.router.navigate(["registro-cliente"]);
-  }
+
 
   public logout(){
     this.facadeService.logout().subscribe(

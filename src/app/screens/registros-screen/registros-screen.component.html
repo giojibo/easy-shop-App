@@ -16,7 +16,7 @@
             <div class="row mt-3" style="text-align: center;">
               <div class="form-group col-12">
                <mat-radio-group [(ngModel)]="user.tipo_usuario" (change)="radioChange($event)" [disabled]="editar">
-                  <mat-radio-button value="administrador">Administrador</mat-radio-button>
+                 <!-- <mat-radio-button value="administrador">Administrador</mat-radio-button>-->
                   <mat-radio-button value="cliente">Cliente</mat-radio-button>
                   <mat-radio-button value="vendedor">Vendedor</mat-radio-button>
                 </mat-radio-group>
@@ -26,15 +26,13 @@
         </section>
         <!-- Formularios -->
         <section class="forms-registro">
-          Formulario del admin 
+          <!--Formulario del admin 
           <section class="registrar-admin" *ngIf="isAdmin">
-            <!--<app-registrar-admin [rol]="tipo_user" [datos_user]="user"></app-registrar-admin>-->
-          </section>
-            Formulario del Cliente
+            <app-registrar-admin [rol]="tipo_user" [datos_user]="user"></app-registrar-admin>
+          </section> -->
           <section class="registro-alumnos" *ngIf="isCliente">
             <app-registrar-cliente [rol]="tipo_user"  [datos_user]="user"></app-registrar-cliente>
           </section>
-            Formulario del Vendedor 
           <section class="registrar-vendedor" *ngIf="isVendedor">
            <!-- <app-registrar-vendedor [rol]="tipo_user" [datos_user]="user"></app-registrar-vendedor>-->
           </section>
