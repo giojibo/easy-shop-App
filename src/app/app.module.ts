@@ -31,6 +31,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -67,6 +68,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,
+    CommonModule, 
+    MatButtonModule, 
+    MatIconModule
     
   ],
   providers: [],

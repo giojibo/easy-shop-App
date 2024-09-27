@@ -1,272 +1,181 @@
-/*Todos los estilos para desktop*/
-//Horizontal full pantalla
-@media (min-width: 960px) and (orientation: landscape) {
-    .wrapper{
-      width: 100vw;
-      height: 100vh;
-      //Flex
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      overflow-y: hidden;
-    }
-  
-    .section-left{
-      width: 50%;
-      height: 100%;
-      //Flex
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      //Fondo de la imagen
-      background-image: url("/assets/images/login-bg.png");
-      //background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
-    //Imágenes
-    .logo-buap{
-      width: 280px;
-      height: 350px;
-    }
-  
-    .logo-fcc{
-      width: 500px;
-      height: 180px;
-    }
-  
-    //Derecha
-    .section-right{
-      width: 50%;
-      height: 100%;
-      //Flex
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-    }
-  
-    .title{
-      font-size: 32px;
-      text-align: center;
-      font-family: Nexa-Bold;
-      letter-spacing: 0px;
-      color: #231F20;
-      text-transform: uppercase;
-      opacity: 1;
-    }
-  
-    .card{
-      width: 27rem;
-      height: 27.813rem;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      box-shadow: -8px 0px 0px #0000001A;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-    }
-  
-    .card-body{
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding-top: 3rem;
-    }
-    input{
-      width: 296px;
-      height: 48px;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-    }
-  
-    .input-group-text{
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-      border-left: none!important;
-      font-size: 1rem!important;
-    }
-  
-    .pwd{
-      border-right: none!important;
-    }
-  
-    .form-check-label{
-      text-align: left;
-      font-family: Nexa-Bold;
-      font-size: 16px;
-      letter-spacing: 0px;
-      color: #0092B8;
-      opacity: 1;
-      cursor: pointer;
-    }
-  
-    .btn-primary{
-      width: 208px;
-      height: 48px;
-      background-color: #0092B8!important;
-      border-color: #0092B8!important;
-      border-radius: 8px!important;
-      opacity: 1!important;
-      //Fuente
-      text-align: center;
-      font-family: Nexa-Bold;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0px;
-      color: #FFFFFF;
-      opacity: 1;
-    }
-  
-    .btn-primary:hover {
-      background-color: #017895!important;
-      border-color: #017895!important;
-  
-    }
-  
-    .bi{
-      cursor: pointer;
-    }
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.section-left {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-image: url("/assets/images/login-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem 1rem;
+}
+
+.logo-buap {
+  width: 120px;
+  height: auto;
+}
+
+.logo-fcc {
+  width: 200px;
+  height: auto;
+}
+
+.section-right {
+  width: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  font-family: Nexa-Bold, sans-serif;
+  letter-spacing: 0px;
+  color: #231F20;
+  text-transform: uppercase;
+}
+
+.card {
+  width: 100%;
+  max-width: 350px;
+  background: #FFFFFF;
+  box-shadow: -8px 0px 0px #0000001A;
+  border: 2px solid #3E3E3E;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+input {
+  width: 100%;
+  height: 48px;
+  background: #FFFFFF;
+  border: 2px solid #3E3E3E;
+}
+
+.input-group-text {
+  background: #FFFFFF;
+  border: 2px solid #3E3E3E;
+  border-left: none !important;
+  font-size: 1rem !important;
+}
+
+.pwd {
+  border-right: none !important;
+}
+
+.form-check-label {
+  text-align: left;
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #0092B8;
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: 100%;
+  max-width: 208px;
+  height: 48px;
+  background-color: #0092B8 !important;
+  border-color: #0092B8 !important;
+  border-radius: 8px !important;
+  text-align: center;
+  font-family: Nexa-Bold, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #017895 !important;
+  border-color: #017895 !important;
+}
+
+.bi {
+  cursor: pointer;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .logo-buap {
+    width: 180px;
   }
-  
-  //Vertical full pantalla
-  @media (max-width: 961px) and (orientation: portrait) {
-    .wrapper{
-      width: 100vw;
-      height: 100vh;
-      //Flex
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-    }
-  
-    .section-left{
-      width: 100%;
-      height: 90%;
-      //Flex
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 5rem;
-      //Fondo
-      //Fondo de la imagen
-      background-image: url("/assets/images/login-bg.png");
-      //background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding-top: 1rem;
-      padding-bottom: 5rem;
-    }
-  
-    .section-right{
-      width: 10%;
-      height: 30%;
-      //Flex
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo-buap{
-      width: 150px;
-      height: 180px;
-    }
-  
-  
-    .title{
-      font-size: 22px;
-      text-align: center;
-      font-family: Nexa-Bold;
-      letter-spacing: 0px;
-      color: #231F20;
-      text-transform: uppercase;
-      opacity: 1;
-    }
-  
-    .card{
-      width: 22rem;
-      height: 24.813rem;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      box-shadow: -8px 0px 0px #0000001A;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-    }
-  
-    .card-body{
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding-top: 0.5rem;
-    }
-  
-    input{
-      width: 290px;
-      height: 48px;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-    }
-  
-    .input-group-text{
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-      border: 2px solid #3E3E3E;
-      opacity: 1;
-      border-left: none!important;
-      font-size: 1rem!important;
-    }
-  
-    .pwd{
-      border-right: none!important;
-    }
-  
-    .form-check-label{
-      text-align: left;
-      font-family: Nexa-Bold;
-      font-size: 16px;
-      letter-spacing: 0px;
-      color: #0092B8;
-      opacity: 1;
-      cursor: pointer;
-    }
-  
-    .btn-primary{
-      width: 208px;
-      height: 48px;
-      background-color: #0092B8!important;
-      border-color: #0092B8!important;
-      border-radius: 8px!important;
-      opacity: 1;
-      //Fuente
-      //Fuente
-      text-align: center;
-      font-family: Nexa-Bold;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0px;
-      color: #FFFFFF;
-      opacity: 1;
-    }
-  
-    .btn-primary:hover {
-      background-color: #017895!important;
-      border-color: #017895!important;
-  
-    }
-  
-    .bi{
-      cursor: pointer;
-    }
+
+  .logo-fcc {
+    width: 300px;
   }
-  
-  
+
+  .title {
+    font-size: 28px;
+  }
+
+  .card {
+    max-width: 400px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .section-left {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .section-right {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .logo-buap {
+    width: 280px;
+    height: 350px;
+  }
+
+  .logo-fcc {
+    width: 500px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .card {
+    width: 27rem;
+    height: 27.813rem;
+  }
+}
+
+/* Large desktop styles */
+@media (min-width: 1440px) {
+  .card {
+    width: 30rem;
+    height: 30rem;
+  }
+}

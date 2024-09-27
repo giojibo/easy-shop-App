@@ -13,10 +13,10 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class VendedoresService {
 
   public get errorService(): ErrorsService{
-    return this._errorService; 
+    return this._errorService;
   }
   public set errorsService(value: ErrorsService){
     this._errorService = value;
@@ -28,22 +28,27 @@ export class ClientesService {
     public facadeService: FacadeService
   ) { }
 
-  public esquemaCliente(){
+  public esquemaVendedor(){
     return{
-      'rol':'',
+      'rol': '',
       'first_name': '',
       'last_name': '',
       'email': '',
       'edad': '',
+      'telefono': '',
       'password': '',
       'confirmar_password': '',
       'foto': ''
     }
   }
 
-  public validarCliente(data: any, editar: boolean){
-    console.log("Validando cliente... ", data);
+  public validarVendedor(data: any, editar: boolean){
+    console.log("Validando vendedor... ", data);
     let error: any = [];
+
+   /* if(!this.validatorService.required(data["id"])){
+      error["id"] = this.errorService.required;
+    }*/
 
     if(!this.validatorService.required(data["first_name"])){
       error["first_name"] = this.errorService.required;
@@ -57,9 +62,11 @@ export class ClientesService {
     }else if(!this.validatorService.max(data["email"], 40)){
       error["email"] = this.errorService.max(40);
     }else if (!this.validatorService.email(data['email'])) {
-      error["email"] = this.errorService.email;
-    }else if(this.validatorService.institutionalEmail(data['email'],['alumno.buap.mx','alm.buap.mx'])){
-      error["email"] = this.errorService.institucionalEmail;
+      error['email'] = this.errorService.email;
+    }
+
+    if(!this.validatorService.required(data["telefono"])){
+      error["telefono"] = this.errorService.required;
     }
 
     if(!editar){
@@ -80,7 +87,7 @@ export class ClientesService {
     return error;
   }
 
-  public registrarCliente(data: any): Observable <any>{
-    return this.http.post<any>(`${environment.url_api}/cliente/`,data, httpOptions);
+  public registrarVendedor(data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/vendedor/`,data, httpOptions);
   }
 }

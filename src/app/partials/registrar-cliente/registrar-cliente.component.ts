@@ -27,7 +27,7 @@ export class RegistrarClienteComponent implements OnInit{
   public idUser: Number = 0;
   public token: string = "";
   public  selectedFile: any;
-  public previewUrl: any;
+  public previewUrl: string = 'assets/images/no-image.png';
 
   constructor(
     private clientesService: ClientesService,
@@ -124,5 +124,9 @@ export class RegistrarClienteComponent implements OnInit{
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  insertPhoto(){
+    document.getElementById('file-input')?.click();
   }
 }

@@ -21,9 +21,9 @@
             <li class="nav-item">
               <a class="nav-link" id="productos" (click)="clickNavLink('productos')">Productos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="graficas" *ngIf="token != ''" (click)="logout()">Cerrar Sesion</a>
-            </li>
+
+              <li class="nav-item" *ngIf="token"><a   class="nav-link" (click)="logout()">Cerrar Sesión</a></li>
+
           </ng-container>
           <ng-template #registraUsers>
             <label class="navbar-brand" href="#">Registro de usuarios del sistema</label>
@@ -31,21 +31,13 @@
         </ul>
         <form class="d-flex">
           <div class="dropdown">
-            <button *ngIf="!token" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button *ngIf="!token" class="btn dropdown-toggle" type="button" aria-expanded="false" (click)="registros()">
               Registrarse
             </button>
-            <ul class="dropdown-menu" *ngIf="!token">
-              <li><a class="dropdown-item" (click)="goRegistro_Cliente()" *ngIf="rol!='cliente'">Clientes</a></li>
-              <li><a class="dropdown-item" (click)="goRegistro_Vendedor()" *ngIf="rol!='vendedor' && rol!='cliente'">Vendedores</a></li>
-              <li><hr class="dropdown-divider"></li>
-            </ul>
-            
-            <button *ngIf="token" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              
+            <button *ngIf="token && rol=='administrador'" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" 
+            aria-expanded="false" (click)="registros()">
+              Registrar Administrador
             </button>
-            <ul class="dropdown-menu" *ngIf="token">
-              <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
-            </ul>
             
           </div>
         </form>

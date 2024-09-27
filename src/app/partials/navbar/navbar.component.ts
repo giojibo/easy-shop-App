@@ -35,13 +35,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  public goRegistro_Vendedor()
+  public registros()
   {
-    this.router.navigate(["registro-vendedor"]);
-  }
-  public goRegistro_Cliente()
-  {
-    this.router.navigate(["registro-cliente"]);
+    this.router.navigate(["registros"])
   }
 
   public logout(){
@@ -85,7 +81,7 @@ export class NavbarComponent implements OnInit {
         $("#cliente").removeClass("active");
         $("#principal").addClass("active");
       }
-      else if(link == "materias")
+      else if(link == "productos")
         {
         $("#cliente").removeClass("active");
         $("#vendedor").removeClass("active");
