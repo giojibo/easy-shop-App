@@ -24,6 +24,9 @@
 
               <li class="nav-item" *ngIf="token"><a   class="nav-link" (click)="logout()">Cerrar Sesión</a></li>
 
+            <li class="nav-item">
+              <a class="nav-link" id="graficas" *ngIf="token != ''" (click)="logout()">Cerrar Sesion</a>
+            </li>
           </ng-container>
           <ng-template #registraUsers>
             <label class="navbar-brand" href="#">Registro de usuarios del sistema</label>

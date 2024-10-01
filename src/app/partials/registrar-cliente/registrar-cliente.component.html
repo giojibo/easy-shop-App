@@ -7,7 +7,7 @@
         <div class="section-left">
           <div class="profile-picture-section">
               <h2 class="title-materias">Foto de perfil</h2>
-              <img [src]="previewUrl" alt="Previsualización de la imagen" class="profile-picture-preview" alt="Foto de perfil">
+              <img [src]="previewUrl || 'assets/images/no-image.png'" alt="Previsualización de la imagen" class="profile-picture-preview" alt="Foto de perfil">
            </div>
             <input [(ngModel)]="clientes.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
             <button class="btn-primary" type="button" (click)="insertPhoto()">Añadir foto de perfil</button>

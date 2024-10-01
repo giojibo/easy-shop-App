@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
 const httpOptions = {
-  headers: new HttpHeaders ({'Content-Type': 'application/json' })
+  headers: new HttpHeaders()
 }
 
 @Injectable({
@@ -80,7 +80,7 @@ export class ClientesService {
     return error;
   }
 
-  public registrarCliente(data: any): Observable <any>{
+  public registrarCliente(data: FormData): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/cliente/`,data, httpOptions);
   }
 }

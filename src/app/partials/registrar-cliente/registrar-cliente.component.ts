@@ -21,13 +21,13 @@ export class RegistrarClienteComponent implements OnInit{
   public inputType_1: string = 'password';
   public inputType_2: string = 'password';
 
-  public clientes:any={};
+  public clientes:any= this.clientesService.esquemaCliente();
   public errors:any={};
   public editar:boolean = false;
   public idUser: Number = 0;
   public token: string = "";
-  public  selectedFile: any;
-  public previewUrl: string = 'assets/images/no-image.png';
+  public selectedFile: File | null = null;
+  public previewUrl: string | ArrayBuffer | null = this.clientes.foto ? this.clientes.foto : 'assets/images/no-image.png';
 
   constructor(
     private clientesService: ClientesService,
@@ -59,6 +59,8 @@ export class RegistrarClienteComponent implements OnInit{
   }
 
   public registrar(){
+
+    
     //Validar
     this.errors = [];
 
@@ -67,17 +69,39 @@ export class RegistrarClienteComponent implements OnInit{
       return;
     }
 
-    if(this.clientes.password == this.clientes.confirmar_password){
-      //Si todo es correcto vamos a registrar - se manda a consumir el servicio
-      this.clientesService.registrarCliente(this.clientes).subscribe(
-        (response)=>{
-          alert("Usuario registrado correctamente");
-          console.log("Usuario registrado: ", response);
-          this.router.navigate(["/"]);
-        }, (error)=>{
-            alert("No se pudo registrar el usuario");
-        }
-      );
+    if(this.clientes.password == this.clientes.confirmar_password)
+    {
+      // Si hay una imagen seleccionada, agregarla al FormData
+      if (!this.selectedFile) 
+      {
+        this.clientes.foto = 'assets/images/no-image.png';
+      }
+      else{
+
+        //Si todo es correcto vamos a registrar - se manda a consumir el servicio
+      const formData = new FormData();
+
+      // Agregar los datos del cliente al FormData
+      formData.append('first_name', this.clientes.first_name);
+      formData.append('last_name', this.clientes.last_name);
+      formData.append('email', this.clientes.email);
+      formData.append('edad', this.clientes.edad);
+      formData.append('password', this.clientes.password);
+      formData.append('rol', this.clientes.rol);
+      formData.append('foto', this.selectedFile);
+
+        // Enviar los datos al servicio para registrar el cliente
+        this.clientesService.registrarCliente(formData).subscribe(
+          (response) => {
+            alert('Usuario registrado correctamente');
+            console.log('Usuario registrado:', response);
+            this.router.navigate(['/']);
+          },
+          (error) => {
+            alert('No se pudo registrar el usuario');
+          }
+        );
+      }
     }
     else{
       alert("Las contraseñas no coinciden");

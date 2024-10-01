@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["registros"])
   }
 
+
   public logout(){
     this.facadeService.logout().subscribe(
       (response)=>{
