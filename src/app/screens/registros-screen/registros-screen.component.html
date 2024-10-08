@@ -15,10 +15,10 @@
           </div>
           <div class="row mt-3" style="text-align: center;">
             <div class="form-group col-12">
-              <mat-radio-group [(ngModel)]="user.tipo_usuario" (change)="radioChange($event)" [disabled]="editar">
-                <mat-radio-button value="administrador" *ngIf="rol==='administrador'">Administrador</mat-radio-button>
-                <mat-radio-button value="cliente" *ngIf="rol!='administrador'">Cliente</mat-radio-button>
-                <mat-radio-button value="vendedor" *ngIf="rol!='administrador'">Vendedor</mat-radio-button>
+              <mat-radio-group [(ngModel)]="tipo_user" (change)="radioChange($event)" [disabled]="editar">
+                <mat-radio-button value="administrador" *ngIf="rol !== 'administrador'">Administrador</mat-radio-button>
+                <mat-radio-button value="cliente" *ngIf="rol !== 'cliente'">Cliente</mat-radio-button>
+                <mat-radio-button value="vendedor" *ngIf="rol !== 'vendedor'">Vendedor</mat-radio-button>
               </mat-radio-group>
             </div>
           </div>

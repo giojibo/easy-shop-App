@@ -33,7 +33,7 @@ export class RegistrosScreenComponent implements OnInit {
     private location : Location,
     public activatedRoute: ActivatedRoute,
     private router: Router,
-    //private facadeService: FacadeService,
+    private facadeService: FacadeService,
     private clientesServices: ClientesService
   )
   {}

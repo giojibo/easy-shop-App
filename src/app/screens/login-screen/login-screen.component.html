@@ -15,7 +15,7 @@
               <!-- Input para contraseña -->
               <div class="pt-3 mb-3">
                 <div class="input-group input-group-merge">
-                  <input type="{{type}}" [(ngModel)]="password" id="show-password" name="password_user" class="form-control pwd" placeholder="Contraseña" (keyup)="login()">
+                  <input type="{{type}}" [(ngModel)]="password" id="show-password" name="password_user" class="form-control pwd" placeholder="Contraseña" (keydown.enter)="login()">
                   <div class="input-group-text" id="show-password" data-password="false">
                     <i *ngIf="type == 'password'" class="bi bi-eye-fill" (click)="showPassword()"></i>
                     <i *ngIf="type == 'text'" class="bi bi-eye-slash-fill" (click)="showPassword()"></i>

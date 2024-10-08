@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full'},
   { path: 'clientes', component: ClientesScreenComponent, pathMatch: 'full'},
   { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full'},
+  { path: 'vendedores/:rol/:id', component: VendedoresScreenComponent, pathMatch: 'full'},
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
 ];

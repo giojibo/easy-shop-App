@@ -52,7 +52,7 @@ export class RegistrarClienteComponent implements OnInit{
       this.token = this.facadeService.getSessionToken();
     }
     //Imprimir datos en consola
-    console.log("Alumno: ", this.clientes);
+    console.log("Cliente: ", this.clientes);
   }
   public regresar(){
     this.location.back();

@@ -1,2 +1,9 @@
-<app-navbar></app-navbar>
-<p>vendedores-screen works!</p>
+<div *ngIf="vendedor">
+    <h2>Detalles del Vendedor</h2>
+    <p><strong>ID del Vendedor:</strong> {{ vendedor.id }}</p>
+    <p><strong>Nombre:</strong> {{ vendedor.user.first_name }} {{ vendedor.user.last_name }}</p>
+    <p><strong>Email:</strong> {{ vendedor.user.email }}</p>
+    <p><strong>Teléfono:</strong> {{ vendedor.telefono }}</p>
+    <p><strong>Edad:</strong> {{ vendedor.edad }}</p>
+  </div>
+  

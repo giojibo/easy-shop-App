@@ -90,4 +90,8 @@ export class VendedoresService {
   public registrarVendedor(data: any): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/vendedor/`,data, httpOptions);
   }
+  public obtenerVendedorPorId(id: string): Observable<any> {
+    return this.http.get<any>(`${environment.url_api}/vendedor/?id=${id}`, httpOptions);
+  }
+  
 }
