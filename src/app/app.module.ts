@@ -32,6 +32,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     CommonModule, 
     MatButtonModule, 
-    MatIconModule
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    
     
   ],
   providers: [],

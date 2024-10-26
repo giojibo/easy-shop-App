@@ -133,5 +133,17 @@ export class FacadeService {
   getUserGroup(){
     return this.cookieService.get(group_name_cookie_name);
   }
+
+  // Función para guardar el ID en localStorage
+  saveUserIdToLocalStorage(userId: string): void {
+  localStorage.setItem('userId', userId);
+  console.log("ID guardado en localStorage: ", userId);
+  }
+
+  getUserIdFromLocalStorage(): string | null {
+    const userId = localStorage.getItem('userId');
+    console.log("ID obtenido de localStorage: ", userId);
+    return userId;
+  }
     
 }

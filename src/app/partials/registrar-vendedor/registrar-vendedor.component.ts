@@ -63,23 +63,47 @@ export class RegistrarVendedorComponent implements OnInit {
     this.errors = [];
 
     this.errors = this.vendedoresService.validarVendedor(this.vendedor, this.editar);
-    if(!$.isEmptyObject(this.errors)){
-      return;
-    }
+    
+    const email = this.vendedor.email || ''; 
 
-    if(this.vendedor.password == this.vendedor.confirmar_password){
-      //Si todo es correcto vamos a registrar - se manda a consumir el servicio
-      this.vendedoresService.registrarVendedor(this.vendedor).subscribe(
-        (response)=>{
-          alert("Usuario registrado correctamente");
-          console.log("Usuario registrado: ", response);
-          this.router.navigate(["/"]);
-        }, (error)=>{
-            alert("No se pudo registrar el usuario");
-        }
-      );
-    }
+      if(!email.endsWith('@alumno.buap.mx'))
+      {
+        this.errors['email'] = 'El correo debe ser de dominio @alumno.buap.mx'
+        alert(this.errors['email']);
+        return; 
+      }
+
+    if(this.vendedor.password == this.vendedor.confirmar_password)
+    {
+      if(!this.selectedFile)
+      {
+        this.vendedor.foto = 'assets/images/no-image.png';
+      }
     else{
+      
+      const formData = new FormData(); 
+      formData.append('first_name', this.vendedor.first_name);
+      formData.append('last_name', this.vendedor.last_name);
+      formData.append('email', this.vendedor.email);
+      formData.append('edad', this.vendedor.edad);
+      formData.append('telefono', this.vendedor.telefono);
+      formData.append('password', this.vendedor.password);
+      formData.append('rol', this.vendedor.rol);
+      formData.append('foto', this.selectedFile);
+
+        this.vendedoresService.registrarVendedor(formData).subscribe(
+          (response)=>{
+            alert('Usuario registrado correctamente');
+            console.log("Usuario registrado: ", response);
+            this.router.navigate(['/']);
+          },
+          (error) =>{
+            alert('No se pudo registar el usuario'); 
+          }
+        );
+    }
+  }else{
+
       alert("Las contraseñas no coinciden");
       this.vendedor.password="";
       this.vendedor.confirmar_password="";

@@ -65,9 +65,15 @@ export class RegistrarClienteComponent implements OnInit{
     this.errors = [];
 
     this.errors = this.clientesService.validarCliente(this.clientes, this.editar);
-    if(!$.isEmptyObject(this.errors)){
-      return;
-    }
+    
+    const email = this.clientes.email || ''; 
+
+      if(!email.endsWith('@alumno.buap.mx'))
+      {
+        this.errors['email'] = 'El correo debe ser de dominio @alumno.buap.mx'
+        alert(this.errors['email']);
+        return; 
+      }
 
     if(this.clientes.password == this.clientes.confirmar_password)
     {

@@ -10,23 +10,28 @@
           <ng-container *ngIf="tipo!='registros'; else registraUsers">
             <!-- 1Todo el menú de los usuarios -->
             <li class="nav-item">
-              <a class="nav-link" id="principal" aria-current="page" (click)="clickNavLink('')">Inicio</a>
+              <a class="nav-link" *ngIf="rol!='cliente' && rol!='administrador' && rol!='vendedor'" id="principal" aria-current="page" (click)="clickNavLink('')">Inicio</a>
             </li>
-            <li class="nav-item" *ngIf="rol!='clientes'">
+            <li class="nav-item" *ngIf="rol!='vendedor' && rol!='cliente' && token">
               <a class="nav-link" id="cliente" aria-current="page" (click)="clickNavLink('clientes')">Clientes</a>
             </li>
-            <li class="nav-item" *ngIf="rol!='vendedores' && rol!='cliente'">
+            <li class="nav-item" *ngIf="rol!='vendedor' && rol!='cliente' && token">
               <a class="nav-link" id="vendedor" (click)="clickNavLink('vendedores')">Vendedores</a>
             </li>
+
+            <li class="nav-item" *ngIf="token">
+              <a class="nav-link" (click)="clickNavLink('home')"><mat-icon>home</mat-icon></a>
+            </li>
+
             <li class="nav-item">
               <a class="nav-link" id="productos" (click)="clickNavLink('productos')">Productos</a>
             </li>
 
-              <li class="nav-item" *ngIf="token"><a   class="nav-link" (click)="logout()">Cerrar Sesión</a></li>
+              <li class="nav-item" *ngIf="token"><a class="nav-link" (click)="logout()">Cerrar Sesión <mat-icon>logout</mat-icon></a></li>
 
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a class="nav-link" id="graficas" *ngIf="token != ''" (click)="logout()">Cerrar Sesion</a>
-            </li>
+            </li>-->
           </ng-container>
           <ng-template #registraUsers>
             <label class="navbar-brand" href="#">Registro de usuarios del sistema</label>
@@ -48,3 +53,4 @@
     </div>
   </nav>
 </div>
+

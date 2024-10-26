@@ -66,9 +66,16 @@ ngOnInit(): void {
     this.errors = [];
 
     this.errors = this.administradoresService.validarAdmin(this.admin, this.editar)
-    if(!$.isEmptyObject(this.errors)){
-      return;
-    }
+   
+      const email = this.admin.email || ''; 
+
+      if(!email.endsWith('@alumno.buap.mx'))
+      {
+        this.errors['email'] = 'El correo debe ser de dominio @alumno.buap.mx'
+        alert(this.errors['email']);
+        return; 
+      }
+      
     // Validamos que las contraseñas coincidan
     // Validar la contraseña
     if(this.admin.password == this.admin.confirmar_password){

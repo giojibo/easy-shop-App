@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 
 const httpOptions = {
-  headers: new HttpHeaders ({'Content-Type': 'application/json' })
+  headers: new HttpHeaders ()
 }
 
 @Injectable({

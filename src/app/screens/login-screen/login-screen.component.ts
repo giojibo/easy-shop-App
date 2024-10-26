@@ -36,15 +36,16 @@ export class LoginScreenComponent implements OnInit{
     }
     //Si se aprueba la validación, ir al pagina de home
     this.facadeService.login(this.username, this.password).subscribe(
-      (response)=>{
-        this.facadeService.saveUserData(response);
-        const id = response.id; 
-        console.log("Id del usuario: ", id);
-        this.router.navigate(["home"]);
-      }, (error)=>{
+      (response) => {
+        this.facadeService.saveUserData(response); // Esto guardará los datos en las cookies como tenías antes
+        const userId = response.id || response.user.id; // Asegúrate de obtener el ID correcto
+        this.facadeService.saveUserIdToLocalStorage(userId); // Guardar el ID en localStorage
+        this.router.navigate(["home"]); // Redirigir a la página de inicio
+      },
+      (error) => {
         alert("No se pudo iniciar sesión");
       }
-      );
+    );
   }
 
   public registrar(){

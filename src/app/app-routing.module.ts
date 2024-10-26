@@ -11,20 +11,23 @@ import { ProductosScreenComponent } from './screens/productos-screen/productos-s
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistrosScreenComponent } from './screens/registros-screen/registros-screen.component';
 import { BienvenidaComponent } from './screens/bienvenida/bienvenida.component';
+import { RegistrarProductosComponent } from './partials/registrar-productos/registrar-productos.component';
 
 const routes: Routes = [
-   { path: '', component: BienvenidaComponent, pathMatch: 'full'},
+  { path: '', component: BienvenidaComponent, pathMatch: 'full'},
   { path: 'home', component: HomeScreenComponent, pathMatch: 'full'},
   { path: 'login', component: LoginScreenComponent, pathMatch: 'full'},
   { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full'},
   { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full'},
   { path: 'registro-cliente', component: RegistrarClienteComponent, pathMatch: 'full'},
+  { path: 'registro-producto', component: RegistrarProductosComponent, pathMatch: 'full'},
   { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full'},
   { path: 'clientes', component: ClientesScreenComponent, pathMatch: 'full'},
   { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full'},
   { path: 'vendedores/:rol/:id', component: VendedoresScreenComponent, pathMatch: 'full'},
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
+  { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

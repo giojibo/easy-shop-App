@@ -83,4 +83,7 @@ export class ClientesService {
   public registrarCliente(data: FormData): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/cliente/`,data, httpOptions);
   }
+  public obtenerClienterPorId(id: string): Observable<any> {
+    return this.http.get<any>(`${environment.url_api}/cliente/?id=${id}`, httpOptions);
+  }
 }

@@ -54,6 +54,11 @@ export class NavbarComponent implements OnInit {
     );
   }
 
+  public siderbarItems = [
+    {label: 'Información', icon: 'label', url:''},
+    {label: 'Editar Perfil', icon: 'add', url:'./registros/vendedor/'+ 7},
+  ]
+
   public clickNavLink(link: string)
   {
     this.router.navigate([link]);
@@ -88,6 +93,14 @@ export class NavbarComponent implements OnInit {
         $("#vendedor").removeClass("active");
         $("#principal").removeClass("active");
         $("#productos").addClass("active");
+      }
+      else if(link == "home")
+        {
+        $("#cliente").removeClass("active");
+        $("#vendedor").removeClass("active");
+        $("#principal").removeClass("active");
+        $("#productos").removeClass("active");
+        $("#home").addClass("active");
       }
 
   }
