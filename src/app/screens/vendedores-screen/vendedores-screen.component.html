@@ -1,21 +1,26 @@
 <section class="bienvenida">
+  <div class="toggle-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon style="color: black;">account_circle</mat-icon> 
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editarPerfil(vendedor.user.id)">Editar perfil</button>
+    </mat-menu>
+  </div>
+  
   <div class="contenido-bienvenida" *ngIf="vendedor?.user?.first_name">
     <h1>Hola {{vendedor.user?.first_name}}.</h1>
-
     <p>
-      Esta es la bienvenida a tu pagina de vendedor, aqui podras <br>
-      agregar tus productos como editarlos y editar tu perfil en la<br>
-      barra de navegación podras ver tus opciones en la parte de <br>
-      tus productos tendras mas opciones, como puntos de <br>
+      Esta es la bienvenida a tu página de vendedor, aquí podrás <br>
+      agregar tus productos, así como editarlos y editar tu perfil. En la<br>
+      barra de navegación podrás ver tus opciones. En la parte de <br>
+      tus productos tendrás más opciones, como puntos de <br>
       entrega, agregar, editar o eliminar.
-
-      <img *ngIf="vendedor.user.foto" [src]="vendedor.user.foto" alt="Foto del vendedor">
     </p>
-
-    <button mat-button mat-flat-button color="primary" (click)="registrar_producto()">
+    
+    <button mat-button mat-flat-button color="primary" (click)="registrar_producto()" class="add-product-button">
       Agregar Producto
+      <mat-icon >arrow_forward</mat-icon>
     </button>
-  
   </div>
 </section>
-

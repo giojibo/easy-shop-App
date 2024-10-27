@@ -27,7 +27,7 @@ export class VendedoresScreenComponent implements OnInit{
   }
 
   private getVendedorData(): void {
-    const vendedorId = this.facadeService.getUserIdFromLocalStorage(); // Obtener el ID desde localStorage
+    const vendedorId = Number(this.facadeService.getUserIdFromLocalStorage()); // Obtener el ID desde localStorage
   
     if (vendedorId) {
       this.vendedoresService.obtenerVendedorPorId(vendedorId).subscribe(
@@ -45,7 +45,13 @@ export class VendedoresScreenComponent implements OnInit{
   }
 
   public registrar_producto()
-{
-  this.router.navigate(["registro-producto"])
-}
+  {
+    this.router.navigate(["registro-producto"])
+  }
+
+  public editarPerfil(iduser: Number)
+  {
+    this.router.navigate(["registros/vendedor/"+iduser]);
+  }
+
 }

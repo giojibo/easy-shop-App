@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { FacadeService } from 'src/app/services/facade.service';
 import { VendedoresService } from '../../services/vendedores.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
 
 declare var $:any;
 
@@ -35,6 +37,7 @@ export class RegistrarVendedorComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private facadeService: FacadeService,
     private location : Location,
+    public dialog: MatDialog,
   ){
 
   }
@@ -151,5 +154,32 @@ export class RegistrarVendedorComponent implements OnInit {
   }
   insertPhoto(){
     document.getElementById('file-input')?.click();
+  }
+
+  public actualizar() {
+    this.errors = []; 
+    this.errors = this.vendedoresService.validarVendedor(this.vendedor, this.editar);
+
+    if (!$.isEmptyObject(this.errors)) {
+      return;
+    }
+    console.log("Pasó la validación");
+
+    const dialogRef = this.dialog.open(EditarUserComponent,{
+      data: { id: this.vendedor, rol: 'vendedor' }, // Pasar valores al componente modal
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.isEdit) {
+        console.log("Vendedor editado");
+        // Recargar página o redirigir al home
+        this.router.navigate(["home"]);
+      } else {
+        alert("Vendedor no editado ");
+        console.log("No se editó el maestro");
+      }
+    });
   }
 }

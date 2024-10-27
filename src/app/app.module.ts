@@ -35,6 +35,9 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { EditarUserComponent } from './modals/editar-user/editar-user.component';
+
 
 
 @NgModule({
@@ -53,6 +56,7 @@ import { MatListModule } from '@angular/material/list';
     ClientesScreenComponent,
     RegistrosScreenComponent,
     BienvenidaComponent,
+    EditarUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
+    MatMenuModule,
     
     
   ],

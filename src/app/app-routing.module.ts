@@ -28,6 +28,10 @@ const routes: Routes = [
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
   { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full'},
+  {
+    path: 'administracion',
+    loadChildren: () => import('./user-administracion/user-administracion.module').then (m => m.UserAdministracionModule),
+  },
 ];
 
 @NgModule({

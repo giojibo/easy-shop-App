@@ -90,8 +90,31 @@ export class VendedoresService {
   public registrarVendedor(data: any): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/vendedor/`,data, httpOptions);
   }
-  public obtenerVendedorPorId(id: string): Observable<any> {
+  public obtenerVendedorPorId(id: Number): Observable<any> {
     return this.http.get<any>(`${environment.url_api}/vendedor/?id=${id}`, httpOptions);
+  }
+
+  public editarVendedor(data: any, file?: File): Observable <any>{
+    const formData: FormData = new FormData();
+    const token = this.facadeService.getSessionToken();
+
+    formData.append('id', data.id);    
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    
+    formData.append('edad', data.edad);
+    formData.append('telefono', data.telefono);
+    
+    if (file) {
+      formData.append('foto', file); // 'foto_perfil' debe coincidir con el campo esperado en el backend
+    }
+
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<any>(`${environment.url_api}/vendedor-edit/`, formData, {headers});
+
   }
   
 }

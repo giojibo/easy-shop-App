@@ -54,10 +54,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  public siderbarItems = [
-    {label: 'Información', icon: 'label', url:''},
-    {label: 'Editar Perfil', icon: 'add', url:'./registros/vendedor/'+ 7},
-  ]
+
 
   public clickNavLink(link: string)
   {
