@@ -12,6 +12,10 @@ import { LoginScreenComponent } from './screens/login-screen/login-screen.compon
 import { RegistrosScreenComponent } from './screens/registros-screen/registros-screen.component';
 import { BienvenidaComponent } from './screens/bienvenida/bienvenida.component';
 import { RegistrarProductosComponent } from './partials/registrar-productos/registrar-productos.component';
+import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.component';
+import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
+import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
+
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent, pathMatch: 'full'},
@@ -28,10 +32,9 @@ const routes: Routes = [
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
   { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full'},
-  {
-    path: 'administracion',
-    loadChildren: () => import('./user-administracion/user-administracion.module').then (m => m.UserAdministracionModule),
-  },
+  { path: 'adm-clientes', component: AdmClientesComponent, pathMatch: 'full'},
+  { path: 'adm-vendedores', component: AdmVendedoresComponent, pathMatch: 'full'},
+  { path: 'adm-productos', component: AdmProductosComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -1,2 +1,24 @@
-
-<h1>Hola administrador</h1>
+<section class="bienvenida">
+    <div class="toggle-menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon style="color: black;">account_circle</mat-icon> 
+      </button>
+      <mat-menu #menu="matMenu">
+        <!--<button mat-menu-item (click)="editarPerfil(vendedor.user.id)">Editar perfil</button>-->
+      </mat-menu>
+    </div>
+    
+    <div class="contenido-bienvenida">
+      <h1>Hola {{name_user}}</h1>
+      <p>
+        Esta es la bienvenida a tu página de administrador, aquí podrás <br>
+        gestionar los usuarios como vendedores, clientes y administradores, 
+        así como editarlos y editar tu perfil. En la<br>
+        barra de navegación podrás ver tus opciones que son pertenencientes a tu rol. En la parte de <br>
+        administrar productos tienes el acceso para un buen monitoreo <br>
+      </p>
+      
+      
+    </div>
+  </section>
+  

@@ -78,12 +78,6 @@ export class NavbarComponent implements OnInit {
       $("#cliente").removeClass("active");
       $("#vendedor").addClass("active");
     }
-    else if(link == "home")
-      {
-        $("#vendedor").removeClass("active");
-        $("#cliente").removeClass("active");
-        $("#principal").addClass("active");
-      }
       else if(link == "productos")
         {
         $("#cliente").removeClass("active");
@@ -98,6 +92,37 @@ export class NavbarComponent implements OnInit {
         $("#principal").removeClass("active");
         $("#productos").removeClass("active");
         $("#home").addClass("active");
+      }
+
+      else if(link == "adm-clientes")
+        {
+        $("#cliente").removeClass("active");
+        $("#vendedor").removeClass("active");
+        $("#principal").removeClass("active");
+        $("#productos").removeClass("active");
+        $("home").removeClass("active")
+        $("#admClientes").addClass("active");
+      }
+      else if(link == "adm-vendedores")
+        {
+        $("#cliente").removeClass("active");
+        $("#vendedor").removeClass("active");
+        $("#principal").removeClass("active");
+        $("#productos").removeClass("active");
+        $("home").removeClass("active")
+        $("#admClientes").removeClass("active");
+        $("#admVendedores").addClass("active");
+      }
+      else if(link == "adm-productos")
+        {
+        $("#cliente").removeClass("active");
+        $("#vendedor").removeClass("active");
+        $("#principal").removeClass("active");
+        $("#productos").removeClass("active");
+        $("home").removeClass("active")
+        $("#admClientes").removeClass("active");
+        $("#admVendedores").removeClass("active");
+        $("#admProductos").addClass("active");
       }
 
   }

@@ -42,19 +42,21 @@ export class RegistrarVendedorComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    if(this.activatedRoute.snapshot.params['id'] != undefined){
+    if (this.activatedRoute.snapshot.params['id'] != undefined) {
       this.editar = true;
-      //Asignamos a nuestra variable global el valor del ID que viene por la URL
       this.idUser = this.activatedRoute.snapshot.params['id'];
       console.log("ID User: ", this.idUser);
-      //Al iniciar la vista asignamos los datos del user
       this.vendedor = this.datos_user;
-    }else{
+  
+      // Si existe una URL de foto en el vendedor, úsala para la previsualización
+      if (this.vendedor.foto) {
+        this.previewUrl = this.vendedor.foto;
+      }
+    } else {
       this.vendedor = this.vendedoresService.esquemaVendedor();
       this.vendedor.rol = this.rol;
       this.token = this.facadeService.getSessionToken();
     }
-    //Imprimir datos en consola
     console.log("Vendedor: ", this.vendedor);
   }
   public regresar(){
@@ -181,5 +183,28 @@ export class RegistrarVendedorComponent implements OnInit {
         console.log("No se editó el maestro");
       }
     });
+  }
+  public actualizarFoto(): void {
+    if (this.selectedFile && this.vendedor.id) {
+      const data = {
+        id: this.vendedor.id,
+        first_name: this.vendedor.first_name,
+        last_name: this.vendedor.last_name,
+        telefono: this.vendedor.telefono,
+        edad: this.vendedor.edad
+      };
+      
+      this.vendedoresService.editarVendedor(data, this.selectedFile).subscribe(
+        (response) => {
+          console.log("Foto actualizada exitosamente: ", response);
+         this.vendedor = response;// Refrescar los datos para mostrar la imagen actualizada
+        },
+        (error) => {
+          console.error("Error al actualizar la foto", error);
+        }
+      );
+    } else {
+      console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del vendedor");
+    }
   }
 }

@@ -9,7 +9,7 @@
   </div>
   
   <div class="contenido-bienvenida" *ngIf="vendedor?.user?.first_name">
-    <h1>Hola {{vendedor.user?.first_name}}.</h1>
+    <h1>Hola {{vendedor.user?.first_name}} {{vendedor.user?.last_name}}</h1>
     <p>
       Esta es la bienvenida a tu página de vendedor, aquí podrás <br>
       agregar tus productos, así como editarlos y editar tu perfil. En la<br>

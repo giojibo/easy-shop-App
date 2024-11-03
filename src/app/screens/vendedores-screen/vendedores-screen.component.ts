@@ -53,5 +53,6 @@ export class VendedoresScreenComponent implements OnInit{
   {
     this.router.navigate(["registros/vendedor/"+iduser]);
   }
+  
 
 }

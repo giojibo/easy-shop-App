@@ -37,7 +37,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { EditarUserComponent } from './modals/editar-user/editar-user.component';
-
+import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.component';
+import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
+import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
+import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.component';
 
 
 @NgModule({
@@ -57,6 +60,10 @@ import { EditarUserComponent } from './modals/editar-user/editar-user.component'
     RegistrosScreenComponent,
     BienvenidaComponent,
     EditarUserComponent,
+    AdmClientesComponent,
+    AdmVendedoresComponent,
+    AdmProductosComponent,
+    EliminarUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +88,7 @@ import { EditarUserComponent } from './modals/editar-user/editar-user.component'
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
+   
     
     
   ],

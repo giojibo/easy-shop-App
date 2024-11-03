@@ -145,5 +145,6 @@ export class FacadeService {
     console.log("ID obtenido de localStorage: ", userId);
     return userId;
   }
+  
     
 }
