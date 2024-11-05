@@ -41,7 +41,7 @@ import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.compone
 import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
 import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.component';
-
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -64,8 +64,10 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     AdmVendedoresComponent,
     AdmProductosComponent,
     EliminarUserComponent,
+    ComentariosComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
