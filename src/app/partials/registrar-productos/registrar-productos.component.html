@@ -1,1 +1,57 @@
-<p>registrar-productos works!</p>
+<div class="wrapper">
+  <div class="section-registro">
+    <div class="body-registro">
+      <h1 class="title-user">Ingresa los datos del producto</h1>
+
+      <div class="two-column-layout">
+        <div class="section-left">
+          <div class="profile-picture-section">
+            <h2 class="title-materias">Foto del producto</h2>
+            <img [src]="previewUrl" alt="Previsualización de la imagen" class="profile-picture-preview">
+          </div>
+          <input [(ngModel)]="producto.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
+          <button class="btn-primary" type="button" (click)="insertPhoto()">Añadir foto del producto</button>
+          <button class="btn-danger" type="button" (click)="actualizarFoto()">Actualizar foto</button>
+        </div>
+
+        <div class="section-right">
+          <div class="form-fields-section">
+            <!-- Nombre del Producto -->
+            <mat-form-field class="mat-input" appearance="outline">
+              <mat-label>Nombre del Producto</mat-label>
+              <input matInput [(ngModel)]="producto.nombre" placeholder="Nombre del producto">
+            </mat-form-field>
+            <div *ngIf="errors.nombre" class="invalid-feedback">{{ errors.nombre }}</div>
+
+            <!-- Precio del Producto -->
+            <mat-form-field class="mat-input" appearance="outline">
+              <mat-label>Precio</mat-label>
+              <input matInput [(ngModel)]="producto.precio" type="number" placeholder="Precio del producto">
+            </mat-form-field>
+            <div *ngIf="errors.precio" class="invalid-feedback">{{ errors.precio }}</div>
+
+            <!-- Descripción del Producto -->
+            <mat-form-field class="mat-input" appearance="outline">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput [(ngModel)]="producto.descripcion" placeholder="Descripción del producto"></textarea>
+            </mat-form-field>
+            <div *ngIf="errors.descripcion" class="invalid-feedback">{{ errors.descripcion }}</div>
+
+            <!-- Cantidad Disponible -->
+            <mat-form-field class="mat-input" appearance="outline">
+              <mat-label>Cantidad</mat-label>
+              <input matInput [(ngModel)]="producto.cantidad" type="number" placeholder="Cantidad disponible">
+            </mat-form-field>
+            <div *ngIf="errors.cantidad" class="invalid-feedback">{{ errors.cantidad }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-buttons">
+        <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+        <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrarProducto()">Registrar</button>
+        <button *ngIf="editar" class="btn btn-primary" type="submit" (click)="actualizarProducto()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>

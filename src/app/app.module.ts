@@ -7,7 +7,7 @@ import { HomeScreenComponent } from './screens/home-screen/home-screen.component
 import { RegistrarAdminComponent } from './partials/registrar-admin/registrar-admin.component';
 import { RegistrarVendedorComponent } from './partials/registrar-vendedor/registrar-vendedor.component';
 import { RegistrarClienteComponent } from './partials/registrar-cliente/registrar-cliente.component';
-import { RegistrarProductosComponent } from './partials/registrar-productos/registrar-productos.component';
+import { RegistrarProductoComponent } from './partials/registrar-productos/registrar-productos.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminScreenComponent } from './screens/admin-screen/admin-screen.component';
@@ -50,7 +50,7 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     RegistrarAdminComponent,
     RegistrarVendedorComponent,
     RegistrarClienteComponent,
-    RegistrarProductosComponent,
+    RegistrarProductoComponent,
     NavbarComponent,
     AdminScreenComponent,
     VendedoresScreenComponent,
@@ -70,7 +70,7 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule, 
+    HttpClientModule,
     MatRadioModule,
     MatInputModule,
     MatButtonModule,
@@ -82,15 +82,15 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,
-    CommonModule, 
-    MatButtonModule, 
+    CommonModule,
+    MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
-   
-    
-    
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
