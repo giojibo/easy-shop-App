@@ -10,7 +10,7 @@
             <img [src]="previewUrl" alt="Previsualización de la imagen" class="profile-picture-preview">
           </div>
           <input [(ngModel)]="producto.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
-          <button class="btn-primary" type="button" (click)="insertPhoto()">Añadir foto del producto</button>
+          <button class="btn-primary" type="button" (click)="insertPhoto()" >Añadir foto del producto</button>
           <button class="btn-danger" type="button" (click)="actualizarFoto()">Actualizar foto</button>
         </div>
 

@@ -32,16 +32,17 @@ export class ProductosService {
   // Esquema inicial para un producto
   public esquemaProducto() {
     return {
-      nombre: '',
-      precio: 0,
-      descripcion: '',
-      cantidad: 0,
-      foto: 'assets/images/no-image.png' // Ruta por defecto si no hay imagen
+      'nombre': '',
+      'precio': 0,
+      'descripcion': '',
+      'cantidad': 0,
+      'foto' : 'assets/images/no-product.jpg' // Ruta por defecto si no hay imagen
     };
   }
 
   // Validación de producto
   public validarProducto(data: any, editar: boolean = false): any {
+    console.log("Validando Producto... ", data);
     let error: any = [];
 
     if (!this.validatorService.required(data['nombre'])) {
@@ -67,16 +68,12 @@ export class ProductosService {
 
   // Registro de producto
   public registrarProducto(data: any): Observable<any> {
-    const token = this.facadeService.getSessionToken();
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    return this.http.post<any>(`${environment.url_api}/producto/registrar`, data, { headers });
+    return this.http.post<any>(`${environment.url_api}/producto`, data, httpOptions);
   }
 
   // Obtener producto por ID
-  public obtenerProductoPorId(id: number): Observable<any> {
-    const token = this.facadeService.getSessionToken();
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    return this.http.get<any>(`${environment.url_api}/producto/?id=${id}`, { headers });
+  public obtenerProductoPorId(id: Number): Observable<any> {
+    return this.http.get<any>(`${environment.url_api}/vendedor/?id=${id}`, httpOptions);
   }
 
   // Editar producto
@@ -93,29 +90,32 @@ export class ProductosService {
     if (file) {
       formData.append('foto', file); // Cambia 'foto' si el backend espera otro nombre
     }
-
+  //Encabezado para la autenticación
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put<any>(`${environment.url_api}/producto/editar`, formData, { headers });
+  // Enviar la solicitud sin configurar explícitamente el Content-Type
+    return this.http.put<any>(`${environment.url_api}/producto-edit`, formData, { headers });
   }
 
   // Obtener lista de productos
   public obtenerListaProductos(): Observable<any> {
-    const token = this.facadeService.getSessionToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({
+      'Content-Type': 'applicarion/json',
+      'Authorization': `Bearer` +token
     });
-    return this.http.get<any>(`${environment.url_api}/lista-productos`, { headers });
+    return this.http.get<any>(`${environment.url_api}/lista-productos/`, {headers:headers});
   }
 
   // Eliminar producto
   public eliminarProducto(id: number): Observable<any> {
-    const token = this.facadeService.getSessionToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({
+      'Content-Type': 'applicarion/json',
+      'Authorization': 'Bearer' +token
     });
-    return this.http.delete<any>(`${environment.url_api}/producto/?id=${id}`, { headers });
+    return this.http.delete<any>(`${environment.url_api}/producto-edit/?id=${id}`, { headers:headers });
   }
 }

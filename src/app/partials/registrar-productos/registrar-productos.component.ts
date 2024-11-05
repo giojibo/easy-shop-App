@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FacadeService } from 'src/app/services/facade.service';
 import { ProductosService } from '../../services/productos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
+
+declare var $:any;
 
 @Component({
   selector: 'app-registrar-producto',
@@ -17,7 +20,7 @@ export class RegistrarProductoComponent implements OnInit {
   public editar: boolean = false;
   public idProducto: Number = 0;
   public selectedFile: any;
-  public previewUrl: string = 'assets/images/no-image.png';
+  public previewUrl: string = 'assets/images/no-product.jpg';
 
   constructor(
     private ProductosService: ProductosService,
@@ -25,7 +28,7 @@ export class RegistrarProductoComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private location: Location,
     public dialog: MatDialog,
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     if (this.activatedRoute.snapshot.params['id'] != undefined) {
@@ -43,11 +46,11 @@ export class RegistrarProductoComponent implements OnInit {
     console.log("Producto: ", this.producto);
   }
 
-  regresar() {
+  public regresar() {
     this.location.back();
   }
 
-  registrarProducto() {
+  public registrarProducto() {
     this.errors = this.ProductosService.validarProducto(this.producto, this.editar);
     if (Object.keys(this.errors).length > 0) return;
 
@@ -56,7 +59,7 @@ export class RegistrarProductoComponent implements OnInit {
     formData.append('precio', this.producto.precio);
     formData.append('descripcion', this.producto.descripcion);
     formData.append('cantidad', this.producto.cantidad);
-    formData.append('foto', this.selectedFile || 'assets/images/no-image.png');
+    formData.append('foto', this.selectedFile || 'assets/images/no-product.jpg');
 
     this.ProductosService.registrarProducto(formData).subscribe(
       response => {
@@ -108,5 +111,29 @@ export class RegistrarProductoComponent implements OnInit {
 
   insertPhoto() {
     document.getElementById('file-input')?.click();
+  }
+
+  public actualizarFoto(): void {
+    if (this.selectedFile && this.producto.id) {
+      const data = {
+        id: this.producto.id,
+        first_name: this.producto.first_name,
+        last_name: this.producto.last_name,
+        telefono: this.producto.telefono,
+        edad: this.producto.edad
+      };
+
+      this.ProductosService.editarProducto(data, this.selectedFile).subscribe(
+        (response) => {
+          console.log("Foto actualizada exitosamente: ", response);
+         this.producto = response;// Refrescar los datos para mostrar la imagen actualizada
+        },
+        (error) => {
+          console.error("Error al actualizar la foto", error);
+        }
+      );
+    } else {
+      console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del vendedor");
+    }
   }
 }
