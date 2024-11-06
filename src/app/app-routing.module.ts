@@ -11,7 +11,7 @@ import { ProductosScreenComponent } from './screens/productos-screen/productos-s
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistrosScreenComponent } from './screens/registros-screen/registros-screen.component';
 import { BienvenidaComponent } from './screens/bienvenida/bienvenida.component';
-import { RegistrarProductosComponent } from './partials/registrar-productos/registrar-productos.component';
+import { RegistrarProductoComponent } from './partials/registrar-productos/registrar-productos.component';
 import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.component';
 import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full'},
   { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full'},
   { path: 'registro-cliente', component: RegistrarClienteComponent, pathMatch: 'full'},
-  { path: 'registro-producto', component: RegistrarProductosComponent, pathMatch: 'full'},
+  { path: 'registro-producto', component: RegistrarProductoComponent, pathMatch: 'full'},
   { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full'},
   { path: 'clientes', component: ClientesScreenComponent, pathMatch: 'full'},
   { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full'},
