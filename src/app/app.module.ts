@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
@@ -41,6 +42,14 @@ import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.compone
 import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
 import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CardComponent } from './components/card-component/card.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-administradores.component';
+import { EditarProductosComponent } from './modals/editar-productos/editar-productos.component';
+import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar-productos.component';
+
 
 
 @NgModule({
@@ -64,6 +73,10 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     AdmVendedoresComponent,
     AdmProductosComponent,
     EliminarUserComponent,
+    CardComponent,
+    AdmAdministradoresComponent,
+    EditarProductosComponent,
+    EliminarProductosComponent,
 
   ],
   imports: [
@@ -89,6 +102,10 @@ import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.comp
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
+    MatCardModule,
+    MatGridListModule,
+    MatChipsModule
+    
    
     
     

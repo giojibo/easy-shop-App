@@ -53,3 +53,28 @@
   html, body { height: 100%; }
   body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   
+  /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  overflow-y: hidden; overflow-x: hidden;}
+.spacer{
+  flex: 1 1 auto;
+}
+.fondo{
+  background: linear-gradient( #895a9c ,  #a085ab , #d4cfd6);
+  color: white;
+  height: 100%;
+}
+.img
+{
+  height: 400px;
+  width: auto;
+  transition: transform 0.9s ease;
+}
+.img:hover
+{
+  transform: scaleX(0.9) scaleY(0.9);
+  border-radius: 10px;
+  transition-duration: 2s;
+}
+

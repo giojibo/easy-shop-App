@@ -43,10 +43,24 @@
                 <input matInput [(ngModel)]="producto.cantidad" type="number" placeholder="Cantidad disponible">
               </mat-form-field>
               <div *ngIf="errors.cantidad" class="invalid-feedback">{{ errors.cantidad }}</div>
+              
+              <div class="select-dias">
+                <div class="row mt-3 mb-3">
+                  <div class="form-group col-12">
+                    <label class="title-dias" for="tipo_usuario">Selecciona los lugares de entrega</label>
+                  </div>
+                </div>
+                <div class="checkbox-group" *ngFor="let entrega of entregas; let i = index">
+                  <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{entrega.nombre}}" [checked]="revisarSeleccion(entrega.nombre)">
+                      <div class="d-checkbox-nombre">{{entrega.nombre}}</div>
+                  </mat-checkbox>
+                </div>
+                <div *ngIf="errors.entregas" class="invalid-feedback">{{errors.entregas}}</div>
+              </div>
+
             </div>
           </div>
         </div>
-  
         <div class="section-buttons">
           <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
           <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrarProducto()">Registrar</button>

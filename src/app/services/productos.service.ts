@@ -37,6 +37,7 @@ export class ProductosService {
       'precio': 0,
       'descripcion': '',
       'cantidad': 0,
+      'entregas': [],
       'foto' : 'assets/images/no-product.jpg' // Ruta por defecto si no hay imagen
     };
   }
@@ -54,6 +55,10 @@ export class ProductosService {
       error['descripcion'] = this.errorService.required;
     } else if (!this.validatorService.max(data['descripcion'], 255)) {
       error['descripcion'] = this.errorService.max(255);
+    }
+
+    if(data["entregas"].length == 0){
+      error["entregas"] = "Al menos debes selecionar un lugar de entrega";
     }
 
     if (!this.validatorService.numeric(data['precio']) || data['precio'] <= 0) {
@@ -74,7 +79,7 @@ export class ProductosService {
 
   // Obtener producto por ID
   public obtenerProductoPorId(id: Number): Observable<any> {
-    return this.http.get<any>(`${environment.url_api}/vendedor/?id=${id}`, httpOptions);
+    return this.http.get<any>(`${environment.url_api}/producto/?id=${id}`, httpOptions);
   }
 
   // Editar producto
@@ -102,19 +107,20 @@ export class ProductosService {
 
   // Obtener lista de productos
   public obtenerListaProductos(): Observable<any> {
-    var token = this.facadeService.getSessionToken();
-    var headers = new HttpHeaders({
-      'Content-Type': 'applicarion/json',
-      'Authorization': `Bearer` +token
+    const token = this.facadeService.getSessionToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(`${environment.url_api}/lista-productos/`, {headers:headers});
+    return this.http.get<any>(`${environment.url_api}/lista-productos/`, { headers });
   }
+  
 
   // Eliminar producto
   public eliminarProducto(id: number): Observable<any> {
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({
-      'Content-Type': 'applicarion/json',
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer' +token
     });
     return this.http.delete<any>(`${environment.url_api}/producto-edit/?id=${id}`, { headers:headers });

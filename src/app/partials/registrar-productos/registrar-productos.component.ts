@@ -15,12 +15,19 @@ declare var $:any;
 })
 export class RegistrarProductoComponent implements OnInit {
 
-  @Input() producto: any = {};
+  public producto: any = {};
   public errors: any = {};
   public editar: boolean = false;
   public idProducto: Number = 0;
   public selectedFile: any;
   public previewUrl: string = 'assets/images/no-product.jpg';
+
+  public entregas:any[]=[
+    {value: '1', nombre:'Ciudad Universitaria (CU)'},
+    {value: '2', nombre:'Complejo Cultural Universitario (CCU)'},
+    {value: '3', nombre:'Ciudad Universitaria 2 (CU2)'},
+
+  ];
 
   constructor(
     private ProductosService: ProductosService,
@@ -50,6 +57,20 @@ export class RegistrarProductoComponent implements OnInit {
     this.location.back();
   }
 
+  public checkboxChange(event:any){
+    //console.log("Evento: ", event);
+    if(event.checked){
+      this.producto.entregas.push(event.source.value)
+    }else{
+      console.log(event.source.value);
+      this.producto.entregas.forEach((entrega: any, i: any) => {
+        if(entrega == event.source.value){
+          this.producto.entregas.splice(i,1)
+        }
+      });
+    }
+    console.log("Array entregas: ", this.producto);
+  }
   public registrarProducto() {
     this.errors = this.ProductosService.validarProducto(this.producto, this.editar);
     if (Object.keys(this.errors).length > 0) return;
@@ -59,18 +80,32 @@ export class RegistrarProductoComponent implements OnInit {
     formData.append('precio', this.producto.precio);
     formData.append('descripcion', this.producto.descripcion);
     formData.append('cantidad', this.producto.cantidad);
+    formData.append('entregas', this.producto.entregas);
     formData.append('foto', this.selectedFile || 'assets/images/no-product.jpg');
 
     this.ProductosService.registrarProducto(formData).subscribe(
       response => {
         alert('Producto registrado correctamente');
         console.log("Producto registrado: ", response);
-        this.router.navigate(['/']);
+        this.router.navigate(['home']);
       },
       error => {
         alert('No se pudo registrar el producto');
       }
     );
+  }
+
+  public revisarSeleccion(nombre: string){
+    if(this.producto.entregas){
+      var busqueda = this.producto.entregas.find((element: string)=>element==nombre);
+      if(busqueda != undefined){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
   }
 
   actualizarProducto() {
@@ -83,6 +118,7 @@ export class RegistrarProductoComponent implements OnInit {
     formData.append('precio', this.producto.precio);
     formData.append('descripcion', this.producto.descripcion);
     formData.append('cantidad', this.producto.cantidad);
+    formData.append('entregas', this.producto.entregas);
     formData.append('foto', this.selectedFile);
 
     this.ProductosService.editarProducto(formData).subscribe(

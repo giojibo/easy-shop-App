@@ -1,49 +1,47 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Cliente } from 'src/app/interfaces/user.interface';
+import { Administrador } from 'src/app/interfaces/user.interface';
 import { EliminarUserComponent } from 'src/app/modals/eliminar-user/eliminar-user.component';
-import { ClientesService } from 'src/app/services/clientes.service';
+import { AdministradoresService } from 'src/app/services/administradores.service';
 import { FacadeService } from 'src/app/services/facade.service';
 
 @Component({
-  selector: 'app-adm-clientes',
-  templateUrl: './adm-clientes.component.html',
-  styleUrls: ['./adm-clientes.component.scss']
+  selector: 'app-adm-administradores',
+  templateUrl: './adm-administradores.component.html',
+  styleUrls: ['./adm-administradores.component.scss']
 })
-export class AdmClientesComponent {
+export class AdmAdministradoresComponent implements OnInit{
 
-  name_user:string = "";
+  public name_user:string = "";
   public rol:string = "";
   public token : string = "";
-  public lista_clientes: any[] = [];
-  public cliente:any={};
+  public lista_admins: any[] = [];
+  public administrador:any={};
 
+  displayedColumns: string[] = ['clave_admin', 'nombre', 'email', 'edad', 'telefono', 'editar', 'eliminar'];
+  dataSource = new MatTableDataSource<Administrador>(this.lista_admins as Administrador[]);
 
-  displayedColumns: string[] = ['id', 'nombre', 'email', 'edad', 'editar', 'eliminar'];
-   dataSource = new MatTableDataSource<Cliente>(this.lista_clientes as Cliente[]);
-
-   @ViewChild(MatPaginator)
+  @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   constructor(
-    private clientesServices: ClientesService,
-    public facadeService: FacadeService,
+    private administradoresServices: AdministradoresService,
+    private facadeServices: FacadeService,
     private router: Router,
     private http: HttpClient,
-    public dialog: MatDialog
-
+    private dialog: MatDialog,
   ){}
 
   ngOnInit():void {
-    this.name_user = this.facadeService.getUserCompleteName();
-    this.rol = this.facadeService.getUserGroup();
+    this.name_user = this.facadeServices.getUserCompleteName();
+    this.rol = this.facadeServices.getUserGroup();
     //Validar que haya inicio de sesión
     //Obtengo el token del login
-    this.token = this.facadeService.getSessionToken();
+    this.token = this.facadeServices.getSessionToken();
     console.log("Token: ", this.token);
 
     if(this.token == ""){
@@ -51,7 +49,7 @@ export class AdmClientesComponent {
     }
     //Para paginador
     this.initPaginator();
-    this.obtenerClientes();
+    this.obtenerAdministradores();
   }
 
   public initPaginator(){
@@ -77,56 +75,53 @@ export class AdmClientesComponent {
     //this.dataSourceIngresos.paginator = this.paginator;
   }
 
-  public obtenerClientes(){
-    this.clientesServices.obtenerListaClientes().subscribe(
+  public obtenerAdministradores(){
+    this.administradoresServices.obtenerListaAdmins().subscribe(
       (response)=>{
-        this.lista_clientes = response;
-        console.log("Lista users: ", this.lista_clientes);
-        if(this.lista_clientes.length > 0){
-          //Agregar datos del nombre e email
-          this.lista_clientes.forEach(usuario => {
-            usuario.first_name = usuario.user.first_name;
-            usuario.last_name = usuario.user.last_name;
-            usuario.email = usuario.user.email;
-          });
-          console.log("Otro user: ", this.lista_clientes);
-
-          this.dataSource = new MatTableDataSource<Cliente>(this.lista_clientes as Cliente[]);
+        this.lista_admins = response; 
+        console.log("Lista users: ", this.lista_admins);
+        if(this.lista_admins.length > 0){
+          this.lista_admins.forEach(usuario => {
+            usuario.first_name = usuario.user.first_name; 
+            usuario.last_name = usuario.user.last_name; 
+            usuario.email = usuario.user.email; 
+          }); 
+          console.log("Otro user: ", this.lista_admins); 
+          this.dataSource = new MatTableDataSource<Administrador>(this.lista_admins as Administrador[]);
         }
       }, (error)=>{
         alert("No se pudo obtener la lista de usuarios");
       }
     );
   }
-
   public goEditar(iduser: number): void{
-    this.router.navigate(["registros/cliente/"+iduser]);
+    this.router.navigate(["registros/administrador/"+iduser]); 
   }
-
   guardarIdEnLocalStorage(userId: string): void {
-    this.facadeService.saveUserIdToLocalStorage(userId);
+    this.facadeServices.saveUserIdToLocalStorage(userId);
     console.log("Guardado correctamente");
   }
 
   public delete(idUser: number){
     const dialogRef = this.dialog.open(EliminarUserComponent,{
-      data: {id: idUser, rol: 'cliente'}, //Se pasan valores a través del componente
+      data: {id: idUser, rol: 'administrador'}, //Se pasan valores a través del componente
       height: '288px',
       width: '328px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.isDelete){
-        console.log("Cliente eliminado");
+        console.log("Administrador eliminado");
         //Recargar página
         window.location.reload();
       }else{
-        alert("Cliente no eliminado ");
-        console.log("No se eliminó el cliente");
+        alert("Administrador no eliminado ");
+        console.log("No se eliminó el administrador");
       }
     });
 
   }
+
 
 
 

@@ -140,6 +140,49 @@
     width: 100%;
     order: 2;
   }
+
+  //Checkbox
+.checkbox-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  margin-top: 15px;
+  padding-left: 3px;
+  //gap: 10px;
+}
+
+.checkbox-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70%;
+  margin-left: 5px;
+}
+
+.d-checkbox-nombre{
+  text-align: left;
+  font-family: Nexa;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin-left: 10px;
+}
+
+//Estilos para el checkbox
+::ng-deep .mdc-checkbox__background {
+  transform: scale(1.5);
+  background-color: #F6F4F5;
+  border: 1px solid #F6F4F5;
+}
+
+::ng-deep .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background, .mdc-checkbox__ripple {
+  background-color: #0092B8 !important;
+  border-color: #0092B8 !important;
+}
   
   @media (min-width: 768px) {
     .wrapper {
