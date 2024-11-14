@@ -20,4 +20,13 @@ export interface Vendedor {
     edad: number;
     foto: string;
   }
+
+  export interface Administrador{
+    user: any; 
+    clave_admin: number; 
+    first_name?: string;
+    last_name?: string; 
+    email: string; 
+    edad: number; 
+  }
   

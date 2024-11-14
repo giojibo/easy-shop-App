@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { RegistrarAdminComponent } from './partials/registrar-admin/registrar-admin.component';
 import { RegistrarVendedorComponent } from './partials/registrar-vendedor/registrar-vendedor.component';
 import { RegistrarClienteComponent } from './partials/registrar-cliente/registrar-cliente.component';
-import { RegistrarProductosComponent } from './partials/registrar-productos/registrar-productos.component';
+import { RegistrarProductoComponent } from './partials/registrar-productos/registrar-productos.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminScreenComponent } from './screens/admin-screen/admin-screen.component';
@@ -41,7 +42,15 @@ import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.compone
 import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
 import { EliminarUserComponent } from './modals/eliminar-user/eliminar-user.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CardComponent } from './components/card-component/card.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-administradores.component';
+import { EditarProductosComponent } from './modals/editar-productos/editar-productos.component';
+import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar-productos.component';
+
+
 
 @NgModule({
   declarations: [
@@ -50,7 +59,7 @@ import { ReactiveFormsModule } from '@angular/forms'
     RegistrarAdminComponent,
     RegistrarVendedorComponent,
     RegistrarClienteComponent,
-    RegistrarProductosComponent,
+    RegistrarProductoComponent,
     NavbarComponent,
     AdminScreenComponent,
     VendedoresScreenComponent,
@@ -64,10 +73,13 @@ import { ReactiveFormsModule } from '@angular/forms'
     AdmVendedoresComponent,
     AdmProductosComponent,
     EliminarUserComponent,
-    ComentariosComponent,
+    CardComponent,
+    AdmAdministradoresComponent,
+    EditarProductosComponent,
+    EliminarProductosComponent,
+
   ],
   imports: [
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -90,6 +102,10 @@ import { ReactiveFormsModule } from '@angular/forms'
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
+    MatCardModule,
+    MatGridListModule,
+    MatChipsModule
+    
    
     
     

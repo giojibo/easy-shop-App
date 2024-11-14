@@ -18,27 +18,24 @@
             <li class="nav-item" *ngIf="rol!='administrador' && rol!='vendedor' && rol!='cliente' && token">
               <a class="nav-link" id="vendedor" (click)="clickNavLink('vendedores')">Vendedores</a>
             </li>
-
             <li class="nav-item" *ngIf="token">
               <a class="nav-link" (click)="clickNavLink('home')"><mat-icon>home</mat-icon></a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" id="productos" (click)="clickNavLink('productos')">Productos</a>
+            <li class="nav-item"  *ngIf="rol==='administrador'">
+              <a class="nav-link" id="admAdministradores" (click)="clickNavLink('adm-administradores')">Administrar Administradores</a>
             </li>
-
             <li class="nav-item" *ngIf="rol==='administrador'">
               <a class="nav-link" id="admClientes" (click)="clickNavLink('adm-clientes')">Administrar Clientes</a>
             </li>
             <li class="nav-item"  *ngIf="rol==='administrador'">
               <a class="nav-link" id="admVendedores" (click)="clickNavLink('adm-vendedores')">Administrar Vendedores</a>
             </li>
-
             <li class="nav-item"  *ngIf="rol==='administrador'">
               <a class="nav-link" id="admProductos" (click)="clickNavLink('adm-productos')">Administrar Productos</a>
             </li>
-
-
+            <li class="nav-item">
+              <a class="nav-link" id="productos" (click)="clickNavLink('productos')">Productos</a>
+            </li>
             <li class="nav-item" *ngIf="token">
               <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
             </li>

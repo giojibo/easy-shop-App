@@ -124,6 +124,18 @@ export class NavbarComponent implements OnInit {
         $("#admVendedores").removeClass("active");
         $("#admProductos").addClass("active");
       }
+      else if(link == "adm-administradores")
+        {
+        $("#cliente").removeClass("active");
+        $("#vendedor").removeClass("active");
+        $("#principal").removeClass("active");
+        $("#productos").removeClass("active");
+        $("home").removeClass("active")
+        $("#admClientes").removeClass("active");
+        $("#admVendedores").removeClass("active");
+        $("#admProductos").removeClass("active");
+        $("#admAdministradores").addClass("active");
+      }
 
   }
 }
