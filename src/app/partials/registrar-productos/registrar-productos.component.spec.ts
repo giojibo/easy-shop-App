@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrarProductosComponent } from './registrar-productos.component';
+import { RegistrarProductoComponent } from './registrar-productos.component';
 
 describe('RegistrarProductosComponent', () => {
-  let component: RegistrarProductosComponent;
-  let fixture: ComponentFixture<RegistrarProductosComponent>;
+  let component: RegistrarProductoComponent;
+  let fixture: ComponentFixture<RegistrarProductoComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RegistrarProductosComponent]
+      declarations: [RegistrarProductoComponent]
     });
-    fixture = TestBed.createComponent(RegistrarProductosComponent);
+    fixture = TestBed.createComponent(RegistrarProductoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

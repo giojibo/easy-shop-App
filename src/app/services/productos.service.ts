@@ -37,8 +37,8 @@ export class ProductosService {
       'precio': 0,
       'descripcion': '',
       'cantidad': 0,
-      'entregas': [],
-      'foto' : 'assets/images/no-product.jpg' // Ruta por defecto si no hay imagen
+      'entregas': [],  // Aquí se inicializa como un arreglo vacío
+      'foto' : '' // Ruta por defecto si no hay imagen
     };
   }
 
@@ -57,8 +57,8 @@ export class ProductosService {
       error['descripcion'] = this.errorService.max(255);
     }
 
-    if(data["entregas"].length == 0){
-      error["entregas"] = "Al menos debes selecionar un lugar de entrega";
+    if (data["entregas"].length == 0) {
+      error["entregas"] = "Al menos debes seleccionar un lugar de entrega";
     }
 
     if (!this.validatorService.numeric(data['precio']) || data['precio'] <= 0) {
@@ -82,26 +82,33 @@ export class ProductosService {
     return this.http.get<any>(`${environment.url_api}/producto/?id=${id}`, httpOptions);
   }
 
-  // Editar producto
+  // Edición de producto con foto opcional
   public editarProducto(data: any, file?: File): Observable<any> {
     const formData: FormData = new FormData();
     const token = this.facadeService.getSessionToken();
-
+  
     formData.append('id', data.id.toString());
     formData.append('nombre', data.nombre);
     formData.append('precio', data.precio.toString());
     formData.append('descripcion', data.descripcion);
     formData.append('cantidad', data.cantidad.toString());
 
-    if (file) {
-      formData.append('foto', file); // Cambia 'foto' si el backend espera otro nombre
+    // Enviar 'entregas' como JSON
+    if (data.entregas && data.entregas.length > 0) {
+      formData.append('entregas', JSON.stringify(data.entregas));  // Asegúrate de enviar un JSON
     }
-  //Encabezado para la autenticación
+
+    // Si hay una foto, agregarla al FormData
+    if (file) {
+      formData.append('foto', file);
+    }
+  
+    // Encabezado para la autenticación
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-  // Enviar la solicitud sin configurar explícitamente el Content-Type
+  
+    // Enviar la solicitud PUT para editar
     return this.http.put<any>(`${environment.url_api}/producto-edit/`, formData, { headers });
   }
 
@@ -114,15 +121,14 @@ export class ProductosService {
     });
     return this.http.get<any>(`${environment.url_api}/lista-productos/`, { headers });
   }
-  
 
   // Eliminar producto
   public eliminarProducto(id: number): Observable<any> {
-    var token = this.facadeService.getSessionToken();
-    var headers = new HttpHeaders({
+    const token = this.facadeService.getSessionToken();
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer' +token
+      'Authorization': 'Bearer ' + token
     });
-    return this.http.delete<any>(`${environment.url_api}/producto-edit/?id=${id}`, { headers:headers });
+    return this.http.delete<any>(`${environment.url_api}/producto-edit/?id=${id}`, { headers });
   }
 }

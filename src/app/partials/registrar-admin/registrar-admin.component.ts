@@ -84,7 +84,7 @@ ngOnInit(): void {
         (response)=>{
           alert("Usuario registrado correctamente");
           console.log("Usuario registrado: ", response);
-          this.router.navigate(["/"]);
+          this.router.navigate(["home"]);
         }, (error)=>{
             alert("No se pudo registrar el usuario");
         }

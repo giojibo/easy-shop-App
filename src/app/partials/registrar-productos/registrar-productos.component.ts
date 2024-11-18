@@ -5,6 +5,8 @@ import { FacadeService } from 'src/app/services/facade.service';
 import { ProductosService } from '../../services/productos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
+import { FormControl } from '@angular/forms';
+import { EditarProductosComponent } from 'src/app/modals/editar-productos/editar-productos.component';
 
 declare var $:any;
 
@@ -19,6 +21,7 @@ export class RegistrarProductoComponent implements OnInit {
   public errors: any = {};
   public editar: boolean = false;
   public idProducto: Number = 0;
+  public seleccion = new FormControl; 
   public selectedFile: any;
   public previewUrl: string = 'assets/images/no-product.jpg';
 
@@ -41,79 +44,46 @@ export class RegistrarProductoComponent implements OnInit {
     if (this.activatedRoute.snapshot.params['id'] != undefined) {
       this.editar = true;
       this.idProducto = this.activatedRoute.snapshot.params['id'];
-      console.log("ID Producto: ", this.idProducto);
-      // Aquí iría una llamada para obtener el producto por ID
-      this.producto = {};  // Reemplaza con la llamada de servicio si está disponible
-      if (this.producto.foto) {
-        this.previewUrl = this.producto.foto;
-      }
+      this.obtenerProductoPorId();
     } else {
       this.producto = this.ProductosService.esquemaProducto();
+      this.producto.entregas = this.producto.entregas || [];
     }
     console.log("Producto: ", this.producto);
   }
+  
 
   public regresar() {
     this.location.back();
   }
 
-  public checkboxChange(event:any){
-    //console.log("Evento: ", event);
-    if(event.checked){
-      this.producto.entregas.push(event.source.value)
-    }else{
-      console.log(event.source.value);
-      this.producto.entregas.forEach((entrega: any, i: any) => {
-        if(entrega == event.source.value){
-          this.producto.entregas.splice(i,1)
-        }
-      });
+  public checkboxChange(event: any) {
+    if (event.checked) {
+      this.producto.entregas.push(event.source.value);
+    } else {
+      if (Array.isArray(this.producto.entregas)) {
+        this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== event.source.value);
+      } else {
+        console.error('Error: entregas no es un arreglo', this.producto.entregas);
+      }
     }
-    console.log("Array entregas: ", this.producto);
   }
+  
+  
+  
   public registrarProducto() {
+
+    this.errors = []; 
     this.errors = this.ProductosService.validarProducto(this.producto, this.editar);
-    if (Object.keys(this.errors).length > 0) return;
 
-    const formData = new FormData();
-    formData.append('nombre', this.producto.nombre);
-    formData.append('precio', this.producto.precio);
-    formData.append('descripcion', this.producto.descripcion);
-    formData.append('cantidad', this.producto.cantidad);
-    formData.append('entregas', this.producto.entregas);
-    formData.append('foto', this.selectedFile || 'assets/images/no-product.jpg');
-
-    this.ProductosService.registrarProducto(formData).subscribe(
-      response => {
-        alert('Producto registrado correctamente');
-        console.log("Producto registrado: ", response);
-        this.router.navigate(['home']);
-      },
-      error => {
-        alert('No se pudo registrar el producto');
-      }
-    );
-  }
-
-  public revisarSeleccion(nombre: string){
-    if(this.producto.entregas){
-      var busqueda = this.producto.entregas.find((element: string)=>element==nombre);
-      if(busqueda != undefined){
-        return true;
-      }else{
-        return false;
-      }
-    }else{
-      return false;
+    if(!this.selectedFile)
+    {
+      this.producto.foto = 'assets/images/no-product.jpg';
     }
-  }
 
-  actualizarProducto() {
-    this.errors = this.ProductosService.validarProducto(this.producto, this.editar);
-    if (Object.keys(this.errors).length > 0) return;
+    else{
 
     const formData = new FormData();
-    formData.append('id', this.producto.id);
     formData.append('nombre', this.producto.nombre);
     formData.append('precio', this.producto.precio);
     formData.append('descripcion', this.producto.descripcion);
@@ -121,17 +91,56 @@ export class RegistrarProductoComponent implements OnInit {
     formData.append('entregas', this.producto.entregas);
     formData.append('foto', this.selectedFile);
 
-    this.ProductosService.editarProducto(formData).subscribe(
-      response => {
-        alert("Producto actualizado correctamente");
-        console.log("Producto actualizado: ", response);
-        this.router.navigate(['/']);
+    this.ProductosService.registrarProducto(formData).subscribe(
+      (response) => {
+        alert('Producto registrado correctamente');
+        console.log("Producto registrado: ", response);
+        this.router.navigate(['home']);
       },
-      error => {
-        console.error("Error al actualizar el producto", error);
+      (error) => {
+        alert('No se pudo registrar el producto');
       }
     );
   }
+}
+
+public revisarSeleccion(nombre: string): boolean {
+  if (Array.isArray(this.producto.entregas)) {
+    return this.producto.entregas.find((element: string) => element === nombre) !== undefined;
+  } else {
+    console.error('Error: entregas no es un arreglo', this.producto.entregas);
+    return false;
+  }
+}
+
+
+  actualizarProducto() {
+    this.errors = []; 
+    this.errors = this.ProductosService.validarProducto(this.producto, this.editar); 
+
+    if (!$.isEmptyObject(this.errors)) {
+      return;
+    }
+    console.log("Pasó la validación");
+
+    const dialogRef = this.dialog.open(EditarProductosComponent, {
+      data: {id: this.producto},
+      height: '288px',
+      width: '328px',
+    }); 
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.isEdit) {
+        console.log("Producto editado");
+        // Recargar página o redirigir al home
+        this.router.navigate(["home"]);
+      } else {
+        alert("Producto no editada ");
+        console.log("No se editó el producto");
+      }
+    });
+  }
+  
 
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
@@ -150,26 +159,46 @@ export class RegistrarProductoComponent implements OnInit {
   }
 
   public actualizarFoto(): void {
-    if (this.selectedFile && this.producto.id) {
-      const data = {
-        id: this.producto.id,
-        first_name: this.producto.first_name,
-        last_name: this.producto.last_name,
-        telefono: this.producto.telefono,
-        edad: this.producto.edad
-      };
-
-      this.ProductosService.editarProducto(data, this.selectedFile).subscribe(
+    if (this.selectedFile && this.producto?.id) {
+      const formData = new FormData();
+      
+      formData.append('id', this.producto.id.toString());
+      formData.append('nombre', this.producto.nombre || ''); // Valor predeterminado si no existe
+      formData.append('precio', this.producto.precio?.toString() || '0'); // Asegura que precio no sea undefined
+      formData.append('cantidad', this.producto.cantidad?.toString() || '0'); // Asegura que cantidad no sea undefined
+      formData.append('entregas', JSON.stringify(this.producto.entregas || [])); // Predetermina entregas a un arreglo vacío
+      formData.append('foto', this.selectedFile);
+  
+      this.ProductosService.editarProducto(formData).subscribe(
         (response) => {
           console.log("Foto actualizada exitosamente: ", response);
-         this.producto = response;// Refrescar los datos para mostrar la imagen actualizada
+          this.producto = response; // Refresca los datos del producto
+          window.location.reload(); // Recarga la página
         },
         (error) => {
           console.error("Error al actualizar la foto", error);
         }
       );
     } else {
-      console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del vendedor");
+      console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del producto");
     }
   }
+  
+  
+  public obtenerProductoPorId(): void {
+    this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
+      response => {
+        this.producto = response;
+        this.producto.entregas = this.producto.entregas || [];
+        if (this.producto.foto) {
+          this.previewUrl = this.producto.foto;
+        }
+        console.log("Producto obtenido: ", this.producto);
+      }, (error) => {
+        alert("Error al obtener el producto para editar");
+      }
+    );
+  }
+  
+  
 }

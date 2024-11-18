@@ -29,6 +29,7 @@ export class RegistrosScreenComponent implements OnInit {
   //Info del usuario
   public idUser: Number = 0;
   public rol: string = "";
+  public token : string = "";
 
 
   constructor(
@@ -44,11 +45,21 @@ export class RegistrosScreenComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //this.rol = this.facadeService.getUserGroup(); 
+    console.log("Rol user: ", this.rol); 
+    this.token = this.facadeService.getSessionToken(); 
+
+
     this.idUser = Number(this.facadeService.getUserIdFromLocalStorage());
     
     //Obtener de la URL el rol para saber cual editar
-    if(this.activatedRoute.snapshot.params['rol'] != undefined){
+    if(this.activatedRoute.snapshot.params['rol'] !== undefined){
       this.rol = this.activatedRoute.snapshot.params['rol'];
+      this.editar = this.activatedRoute.snapshot.params['id'] !== undefined; 
+
+      if(!this.editar){
+        this.user = {};
+      }
       console.log("Rol detect: ", this.rol);
     }
     

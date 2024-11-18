@@ -11,7 +11,7 @@
             </div>
             <input [(ngModel)]="producto.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
             <button class="btn-primary" type="button" (click)="insertPhoto()" >Añadir foto del producto</button>
-            <button class="btn-danger" type="button" (click)="actualizarFoto()">Actualizar foto</button>
+            <button class="btn btn-danger" type="button" (click)="actualizarFoto()" [disabled]="!editar">Actualizar foto</button>
           </div>
   
           <div class="section-right">
@@ -47,7 +47,7 @@
               <div class="select-dias">
                 <div class="row mt-3 mb-3">
                   <div class="form-group col-12">
-                    <label class="title-dias" for="tipo_usuario">Selecciona los lugares de entrega</label>
+                    <label class="title-dias" >Selecciona los lugares de entrega</label>
                   </div>
                 </div>
                 <div class="checkbox-group" *ngFor="let entrega of entregas; let i = index">

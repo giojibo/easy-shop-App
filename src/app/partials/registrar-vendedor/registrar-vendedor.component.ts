@@ -198,6 +198,7 @@ export class RegistrarVendedorComponent implements OnInit {
         (response) => {
           console.log("Foto actualizada exitosamente: ", response);
          this.vendedor = response;// Refrescar los datos para mostrar la imagen actualizada
+         window.location.reload();
         },
         (error) => {
           console.error("Error al actualizar la foto", error);

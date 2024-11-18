@@ -12,6 +12,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class ProductosScreenComponent implements OnInit {
   public lista_productos: Producto[] = [];
   public previewUrl: string = '/assets/images/no-product.jpg';
+  public producto: any = {};
 
   constructor(
     private productosServices: ProductosService,

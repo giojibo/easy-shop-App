@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
   public registros()
   {
     this.router.navigate(["registros"])
+    this.limpia_localStorage();
   }
 
 
@@ -52,6 +53,11 @@ export class NavbarComponent implements OnInit {
         console.error(error);
       }
     );
+
+  }
+
+  public limpia_localStorage():void{
+    localStorage.clear();
   }
 
 

@@ -78,3 +78,7 @@
   cursor: pointer;
   will-change: opacity,transform,border-color,color;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.5; /* Esto le da un aspecto desactivado */
+}

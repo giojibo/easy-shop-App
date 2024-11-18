@@ -1,80 +1,87 @@
-//Font face general
+/* Fuente general */
 @font-face {
-    font-family: 'Nexa-Bold';
-    src: url('/assets/fonts/NexaBold.eot');
-    src: url('/assets/fonts/NexaBold.eot?#iefix') format('embedded-opentype'),
-        url('/assets/fonts/NexaBold.woff2') format('woff2'),
-        url('/assets/fonts/NexaBold.woff') format('woff'),
-        url('/assets/fonts/NexaBold.ttf') format('truetype'),
-        url('/assets/fonts/NexaBold.svg#NexaBold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Nexa-Light';
-    src: url('/assets/fonts/NexaLight.eot');
-    src: url('/assets/fonts/NexaLight.eot?#iefix') format('embedded-opentype'),
-        url('/assets/fonts/NexaLight.woff2') format('woff2'),
-        url('/assets/fonts/NexaLight.woff') format('woff'),
-        url('/assets/fonts/NexaLight.ttf') format('truetype'),
-        url('/assets/fonts/NexaLight.svg#NexaLight') format('svg');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Nexa';
-    src: url('/assets/fonts/NexaRegular.eot');
-    src: url('/assets/fonts/NexaRegular.eot?#iefix') format('embedded-opentype'),
-        url('/assets/fonts/NexaRegular.woff2') format('woff2'),
-        url('/assets/fonts/NexaRegular.woff') format('woff'),
-        url('/assets/fonts/NexaRegular.ttf') format('truetype'),
-        url('/assets/fonts/NexaRegular.svg#NexaRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  html, body { height: 100%; }
-  body { margin: 0; font-family: Nexa; }
-  
-  .invalid-feedback {
-    display: inline-block!important;
-    width: 100%;
-    font-size: 0.75rem;
-    color: #ff5b5b;
-    font-family: Nexa;
-    padding-bottom: 10px;
-  }
-  
-  html, body { height: 100%; }
-  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
-  /* You can add global styles to this file, and also import other style files */
+  font-family: 'Nexa-Bold';
+  src: url('/assets/fonts/NexaBold.eot');
+  src: url('/assets/fonts/NexaBold.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaBold.woff2') format('woff2'),
+      url('/assets/fonts/NexaBold.woff') format('woff'),
+      url('/assets/fonts/NexaBold.ttf') format('truetype'),
+      url('/assets/fonts/NexaBold.svg#NexaBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  overflow-y: hidden; overflow-x: hidden;}
-.spacer{
+@font-face {
+  font-family: 'Nexa-Light';
+  src: url('/assets/fonts/NexaLight.eot');
+  src: url('/assets/fonts/NexaLight.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaLight.woff2') format('woff2'),
+      url('/assets/fonts/NexaLight.woff') format('woff'),
+      url('/assets/fonts/NexaLight.ttf') format('truetype'),
+      url('/assets/fonts/NexaLight.svg#NexaLight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/assets/fonts/NexaRegular.eot');
+  src: url('/assets/fonts/NexaRegular.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/NexaRegular.woff2') format('woff2'),
+      url('/assets/fonts/NexaRegular.woff') format('woff'),
+      url('/assets/fonts/NexaRegular.ttf') format('truetype'),
+      url('/assets/fonts/NexaRegular.svg#NexaRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ajustes para permitir el scroll */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Nexa, "Roboto", "Helvetica Neue", sans-serif;
+  overflow-y: auto;  /* Permite el desplazamiento vertical */
+  overflow-x: hidden;  /* Previene el desplazamiento horizontal */
+}
+
+/* Estilos de fondo y espaciado */
+.spacer {
   flex: 1 1 auto;
 }
-.fondo{
-  background: linear-gradient( #895a9c ,  #a085ab , #d4cfd6);
+
+.fondo {
+  background: linear-gradient(#895a9c, #a085ab, #d4cfd6);
   color: white;
-  height: 100%;
+  //min-height: 100vh; /* Asegura que el fondo cubra todo el viewport */
 }
-.img
-{
-  height: 400px;
+
+/* Imagen con transición */
+.img {
+  height: auto;
   width: auto;
   transition: transform 0.9s ease;
 }
-.img:hover
-{
+
+.img:hover {
   transform: scaleX(0.9) scaleY(0.9);
   border-radius: 10px;
   transition-duration: 2s;
 }
 
+/* Estilos para campos de texto y retroalimentación */
+.invalid-feedback {
+  display: inline-block !important;
+  width: 100%;
+  font-size: 0.75rem;
+  color: #ff5b5b;
+  font-family: Nexa;
+  padding-bottom: 10px;
+}
+.dividir
+{
+  font-size: 15px;
+  color: #4a235a;
+}
