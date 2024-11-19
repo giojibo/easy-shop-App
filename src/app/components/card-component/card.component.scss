@@ -1,0 +1,68 @@
+.fondo {
+  max-width: 280px; /* Ajusta el ancho */
+  margin: 8px; /* Reduce el espaciado entre tarjetas */
+  background-color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fondo img {
+  width: 100%;
+  height: 180px; /* Ajusta ligeramente la altura de la imagen */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.mat-card-header {
+  padding: 8px 12px; /* Reduce el espaciado interno */
+}
+
+.mat-card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.mat-card-subtitle {
+  font-size: 12px; /* Ajusta el tamaño del subtítulo */
+  color: #000000;
+}
+
+.mat-card-content {
+  padding: 6px 12px; /* Reduce el padding del contenido */
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.precio {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e57373; /* Color destacado para el precio */
+  margin: 6px 0; /* Espaciado compacto */
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px; /* Reduce el padding de los botones */
+}
+
+.mat-card-actions button {
+  font-size: 12px;
+}
+
+.mat-chip-listbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px; /* Espaciado compacto entre chips */
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .fondo {
+    max-width: 250px; /* Ajuste adicional para pantallas grandes */
+  }
+}

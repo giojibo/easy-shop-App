@@ -1,28 +1,36 @@
 <mat-card class="fondo">
+  <!-- Encabezado del Card -->
   <mat-card-header class="dividir">
     <mat-card-title>{{ producto.nombre }}</mat-card-title>
-    <mat-card-subtitle style="font-size: 20px; color: white;"> Precio: ${{ producto.precio }} MXN</mat-card-subtitle>
+    <mat-card-subtitle style="font-size: 20px; color: rgb(0, 0, 0);">
+      Precio: ${{ producto.precio }} MXN
+    </mat-card-subtitle>
   </mat-card-header>
-  
+
+  <!-- Imagen del producto -->
   <img [src]="previewUrl" alt="Imagen del producto" />
-  
+
+  <!-- Contenido adicional -->
   <mat-card-content class="mt-2">
-    <h2>Entregas: </h2>
+    <h2>Entregas:</h2>
     <p class="dividir">
       <mat-chip-listbox>
-        <mat-chip *ngFor="let name of producto.entregas.split(',') | slice:0:3">{{ name }}</mat-chip>
+        <mat-chip *ngFor="let entrega of producto.entregas.split(',') | slice:0:3">
+          {{ entrega }}
+        </mat-chip>
       </mat-chip-listbox>
     </p>
   </mat-card-content>
-  
+
+  <!-- Divider -->
   <mat-divider></mat-divider>
+
+  <!-- Botones de acciones -->
   <mat-card-actions>
     <button mat-button mat-raised color="primary" (click)="goEditar(producto.id)">
       <mat-icon>edit</mat-icon> Editar
     </button>
-    
     <span class="spacer"></span>
-    
     <button mat-button mat-raised>
       <mat-icon>more_horiz</mat-icon> Más
     </button>

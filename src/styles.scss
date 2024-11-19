@@ -51,12 +51,12 @@ html, body {
 .spacer {
   flex: 1 1 auto;
 }
-
+/*
 .fondo {
   background: linear-gradient(#895a9c, #a085ab, #d4cfd6);
   color: white;
   min-height: 100vh; /* Asegura que el fondo cubra todo el viewport */
-}
+/*}
 
 /* Imagen con transición */
 .img {
@@ -80,3 +80,4 @@ html, body {
   font-family: Nexa;
   padding-bottom: 10px;
 }
+

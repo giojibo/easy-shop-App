@@ -1,13 +1,15 @@
 <div class="wrapper">
   <div class="header-home">
-    <app-navbar></app-navbar>
+    <app-navbar class="navbar"></app-navbar>
   </div>
-  <div class="body-alumnos">
-    <h1>Listado de productos</h1>
+  
+  <div class="body-alumnos main-container">
+    <h1 class="product-title">Listado de productos</h1>
+    
     <div class="row mt-5 mb-5">
       <div class="grid" *ngIf="lista_productos.length > 0">
         <div class="grid bm-8 pt-2">
-          <div *ngFor="let producto of lista_productos" class="sm:col-4 md:col-3 xl:col-4">
+          <div *ngFor="let producto of lista_productos" class="sm:col-4 md:col-3 xl:col-4 product-card">
             <app-card [producto]="producto"></app-card>
           </div>
         </div>
