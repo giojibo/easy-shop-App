@@ -16,6 +16,7 @@ import { AdmClientesComponent } from './shared/adm-clientes/adm-clientes.compone
 import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.component';
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
 import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-administradores.component';
+import { ProductoViewComponent } from './components/producto-view/producto-view.component';
 
 
 const routes: Routes = [
@@ -33,12 +34,14 @@ const routes: Routes = [
   { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full'},
   { path: 'vendedores/:rol/:id', component: VendedoresScreenComponent, pathMatch: 'full'},
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
+  { path: 'productos:id', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
   { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full'},
   { path: 'adm-clientes', component: AdmClientesComponent, pathMatch: 'full'},
   { path: 'adm-vendedores', component: AdmVendedoresComponent, pathMatch: 'full'},
   { path: 'adm-administradores', component: AdmAdministradoresComponent, pathMatch: 'full'},
   { path: 'adm-productos', component: AdmProductosComponent, pathMatch: 'full'},
+  { path: 'producto-view/:id', component: ProductoViewComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

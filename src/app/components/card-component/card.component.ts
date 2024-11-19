@@ -31,4 +31,8 @@ export class CardComponent implements OnInit {
   public goEditar(id: number): void{
     this.router.navigate(["registro-producto/"+id]); 
   }
+
+  public verProducto(id: number): void{
+    this.router.navigate(["producto-view/"+ id]);
+  }
 }

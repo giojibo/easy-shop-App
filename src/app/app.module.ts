@@ -49,6 +49,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-administradores.component';
 import { EditarProductosComponent } from './modals/editar-productos/editar-productos.component';
 import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar-productos.component';
+import { ProductoViewComponent } from './components/producto-view/producto-view.component';
 
 
 
@@ -77,6 +78,7 @@ import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar
     AdmAdministradoresComponent,
     EditarProductosComponent,
     EliminarProductosComponent,
+    ProductoViewComponent,
 
   ],
   imports: [
