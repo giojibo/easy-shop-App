@@ -1,0 +1,109 @@
+.product-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Estilo del encabezado */
+.header-card {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Tarjeta del producto */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.product-image {
+    max-width: 90%; /* Reducir el ancho máximo al 90% del contenedor */
+    height: auto;   /* Mantener la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 10px auto; /* Centrar la imagen con margen */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Añadir sombra para mejor contraste */
+}
+
+
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0;
+}
+
+/* Tarjeta de información */
+.product-info-card {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.product-details {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b82f6;
+    margin-top: 10px;
+}
+
+/* Chips */
+mat-chip-listbox {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+mat-chip {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Botón de acción */
+.action-button {
+    background-color: black !important;
+    color: white !important;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-transform: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.action-button:hover {
+    background-color: red !important;
+    color: white !important;
+}
