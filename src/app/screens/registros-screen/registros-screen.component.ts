@@ -101,7 +101,7 @@ export class RegistrosScreenComponent implements OnInit {
         }
       );
     }else if(this.rol == "cliente"){
-      this.clientesServices.obtenerClienterPorId(this.idUser).subscribe(
+      this.clientesServices.obtenerClientePorId(this.idUser).subscribe(
         (response)=>{
           this.user = response;
           //Agregamos valores faltantes

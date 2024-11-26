@@ -4,39 +4,46 @@
         <h1>Easy Shop</h1>
     </mat-card>
 
-    <!-- Tarjeta con la Imagen del Producto -->
-    <mat-card class="product-card">
-        <mat-card-header>
-            <mat-card-title>
-                <h1 class="product-title">{{ producto.nombre }}</h1>
-            </mat-card-title>
-        </mat-card-header>
-        <img [src]="producto.foto" alt="Imagen del Producto" class="product-image">
-    </mat-card>
+    <!-- Contenedor del Producto -->
+    <div class="product-details-container">
+        <!-- Tarjeta con la Imagen y Nombre del Producto (izquierda) -->
+        <mat-card class="product-card-left">
+            <mat-card-header>
+                <mat-card-title>
+                    <h1 class="product-title">{{ producto.nombre }}</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <img [src]="producto.foto" alt="Imagen del Producto" class="product-image">
+        </mat-card>
 
-    <!-- Tarjeta con Información del Producto -->
-    <mat-card class="product-info-card">
-        <mat-card-header>
-            <mat-card-title>Información</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <ul class="product-details">
-                <li>Id del Producto: {{ producto.id }}</li>
-                <li class="product-price">Precio: ${{ producto.precio }} MXN</li>
-                <li>Descripción: {{ producto.descripcion }}</li>
-                <li>Cantidad disponible: {{ producto.cantidad }}</li>
-            </ul>
-        </mat-card-content>
-        <mat-card-content>
-            <h2>Lugar de entregas:</h2>
-            <p>
-                <mat-chip-listbox>
-                    <mat-chip *ngFor="let name of producto.entregas.split(',') | slice:0:3">
-                        {{ name }}
-                    </mat-chip>
-                </mat-chip-listbox>
-            </p>
-        </mat-card-content>
-        <button mat-button color="warn" class="action-button" (click)="regresar()">Regresar</button>
-    </mat-card>
+        <!-- Tarjeta con Información del Producto (derecha) -->
+        <mat-card class="product-info-card">
+            <mat-card-header>
+                <mat-card-title>Información</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul class="product-details">
+                    <li>Id del Producto: {{ producto.id }}</li>
+                    <li class="product-price">Precio: ${{ producto.precio }} MXN</li>
+                    <li>Descripción: {{ producto.descripcion }}</li>
+                    <li>Cantidad disponible: {{ producto.cantidad }}</li>
+                </ul>
+            </mat-card-content>
+            <mat-card-content>
+                <h2>Lugar de entregas:</h2>
+                <p>
+                    <mat-chip-listbox>
+                        <mat-chip *ngFor="let name of producto.entregas.split(',') | slice:0:3">
+                            {{ name }}
+                        </mat-chip>
+                    </mat-chip-listbox>
+                </p>
+            </mat-card-content>
+            <mat-card-content>
+                <h2>Dejar comentarios</h2>
+                <app-comentarios [productoId]="producto.id"></app-comentarios>
+            </mat-card-content>
+            <button mat-button color="warn" class="action-button" (click)="regresar()">Regresar</button>
+        </mat-card>
+    </div>
 </div>

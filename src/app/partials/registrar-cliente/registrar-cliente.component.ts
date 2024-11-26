@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { ClientesService } from 'src/app/services/clientes.service';
 import { FacadeService } from 'src/app/services/facade.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
 
 declare var $:any;
 
@@ -21,13 +23,15 @@ export class RegistrarClienteComponent implements OnInit{
   public inputType_1: string = 'password';
   public inputType_2: string = 'password';
 
-  public clientes:any= this.clientesService.esquemaCliente();
+  public clientes:any= {}; //this.clientesService.esquemaCliente()
   public errors:any={};
   public editar:boolean = false;
   public idUser: Number = 0;
   public token: string = "";
-  public selectedFile: File | null = null;
-  public previewUrl: string | ArrayBuffer | null = this.clientes.foto ? this.clientes.foto : 'assets/images/no-image.png';
+  public  selectedFile: any;
+  public previewUrl: string = 'assets/images/no-image.png';
+  //public selectedFile: File | null = null;
+  //public previewUrl: string | ArrayBuffer | null = this.clientes.foto ? this.clientes.foto : 'assets/images/no-image.png';
 
   constructor(
     private clientesService: ClientesService,
@@ -35,6 +39,7 @@ export class RegistrarClienteComponent implements OnInit{
     public activatedRoute: ActivatedRoute,
     private facadeService: FacadeService,
     private location : Location,
+    public dialog: MatDialog,
   ){
 
   }
@@ -46,6 +51,10 @@ export class RegistrarClienteComponent implements OnInit{
       console.log("ID User: ", this.idUser);
       //Al iniciar la vista asignamos los datos del user
       this.clientes = this.datos_user;
+
+      if(this.clientes.foto){
+        this.previewUrl= this.clientes.foto;
+      }
     }else{
       this.clientes = this.clientesService.esquemaCliente();
       this.clientes.rol = this.rol;
@@ -59,8 +68,6 @@ export class RegistrarClienteComponent implements OnInit{
   }
 
   public registrar(){
-
-    
     //Validar
     this.errors = [];
 
@@ -159,4 +166,56 @@ export class RegistrarClienteComponent implements OnInit{
   insertPhoto(){
     document.getElementById('file-input')?.click();
   }
+
+
+public actualizar() {
+  this.errors = []; 
+  this.errors = this.clientesService.validarCliente(this.clientes, this.editar);
+
+  if (!$.isEmptyObject(this.errors)) {
+    return;
+  }
+  console.log("Pasó la validación");
+
+  const dialogRef = this.dialog.open(EditarUserComponent,{
+    data: { id: this.clientes, rol: 'cliente' }, // Pasar valores al componente modal
+    height: '288px',
+    width: '328px',
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result && result.isEdit) {
+      console.log("Cliente editado");
+      // Recargar página o redirigir al home
+      this.router.navigate(["home"]);
+    } else {
+      alert("Cliente no editado ");
+      console.log("No se editó el cliente");
+    }
+  });
+}
+public actualizarFoto(): void {
+  if (this.selectedFile && this.clientes.id) {
+    const data = {
+      id: this.clientes.id,
+      first_name: this.clientes.first_name,
+      last_name: this.clientes.last_name,
+      telefono: this.clientes.telefono,
+      edad: this.clientes.edad
+    };
+    
+    this.clientesService.editarCliente(data, this.selectedFile).subscribe(
+      (response) => {
+        console.log("Foto actualizada exitosamente: ", response);
+       this.clientes = response;// Refrescar los datos para mostrar la imagen actualizada
+       window.location.reload();
+      },
+      (error) => {
+        console.error("Error al actualizar la foto", error);
+      }
+    );
+  } else {
+    console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del cliente");
+  }
+}
 }

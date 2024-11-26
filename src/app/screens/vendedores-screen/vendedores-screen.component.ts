@@ -53,6 +53,11 @@ export class VendedoresScreenComponent implements OnInit{
   {
     this.router.navigate(["registros/vendedor/"+iduser]);
   }
+
+  public verPerfil(iduser: Number)
+  {
+    this.router.navigate(["perfil/"+iduser])
+  }
   
 
 }

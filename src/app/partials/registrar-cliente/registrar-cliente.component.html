@@ -7,10 +7,11 @@
         <div class="section-left">
           <div class="profile-picture-section">
               <h2 class="title-materias">Foto de perfil</h2>
-              <img [src]="previewUrl || 'assets/images/no-image.png'" alt="Previsualización de la imagen" class="profile-picture-preview" alt="Foto de perfil">
-           </div>
+              <img [src]="previewUrl" alt="Previsualización de la imagen" class="profile-picture-preview" alt="Foto de perfil">
+            </div>
             <input [(ngModel)]="clientes.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
             <button class="btn-primary" type="button" (click)="insertPhoto()">Añadir foto de perfil</button>
+            <button class="btn-danger" type="button" (click)="actualizarFoto()">Actualizar foto</button>
         </div>
         
         <div class="section-right">
@@ -59,6 +60,7 @@
       <div class="section-buttons">
         <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
         <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+          <button *ngIf="editar" class="btn btn-primary" type="submit" (click)="actualizar()">Actualizar</button>
       </div>
     </div>
   </div>

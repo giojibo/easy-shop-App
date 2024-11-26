@@ -92,11 +92,7 @@ export class ProductosService {
     formData.append('precio', data.precio.toString());
     formData.append('descripcion', data.descripcion);
     formData.append('cantidad', data.cantidad.toString());
-
-    // Enviar 'entregas' como JSON
-    if (data.entregas && data.entregas.length > 0) {
-      formData.append('entregas', JSON.stringify(data.entregas));  // Asegúrate de enviar un JSON
-    }
+    formData.append('entregas', data.entregas.toString());
 
     // Si hay una foto, agregarla al FormData
     if (file) {
