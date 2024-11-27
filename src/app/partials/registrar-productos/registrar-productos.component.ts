@@ -3,10 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FacadeService } from 'src/app/services/facade.service';
 import { ProductosService } from '../../services/productos.service';
-import { MatDialog } from '@angular/material/dialog';
 import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
 import { FormControl } from '@angular/forms';
 import { EditarProductosComponent } from 'src/app/modals/editar-productos/editar-productos.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $:any;
 
@@ -57,17 +57,22 @@ export class RegistrarProductoComponent implements OnInit {
     this.location.back();
   }
 
-  public checkboxChange(event: any) {
+  checkboxChange(event: any) {
+    const nombre = event.source.value;
+
     if (event.checked) {
-      this.producto.entregas.push(event.source.value);
-    } else {
-      if (Array.isArray(this.producto.entregas)) {
-        this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== event.source.value);
-      } else {
-        console.error('Error: entregas no es un arreglo', this.producto.entregas);
+      // Verificar si ya está en el array antes de agregar
+      if (!this.revisarSeleccion(nombre)) {
+        this.producto.entregas.push(nombre);
       }
+    } else {
+      // Eliminar el elemento del array
+      this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== nombre);
     }
+
+    console.log("Array entregas: ", this.producto.entregas);
   }
+
   
   
   
@@ -104,14 +109,15 @@ export class RegistrarProductoComponent implements OnInit {
   }
 }
 
-public revisarSeleccion(nombre: string): boolean {
-  if (Array.isArray(this.producto.entregas)) {
-    return this.producto.entregas.find((element: string) => element === nombre) !== undefined;
-  } else {
-    console.error('Error: entregas no es un arreglo', this.producto.entregas);
-    return false;
+public revisarSeleccion(nombre: string) {
+  if (this.producto.entregas) {
+    return this.producto.entregas.indexOf(nombre) !== -1;
   }
+  return false;
 }
+
+
+
 
 
   actualizarProducto() {
@@ -129,7 +135,7 @@ public revisarSeleccion(nombre: string): boolean {
       width: '328px',
     }); 
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: { isEdit: any; }) => {
       if (result && result.isEdit) {
         console.log("Producto editado");
         // Recargar página o redirigir al home
@@ -189,10 +195,7 @@ public revisarSeleccion(nombre: string): boolean {
     this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
       response => {
         this.producto = response;
-        this.producto.entregas = this.producto.entregas || [];
-        if (this.producto.foto) {
-          this.previewUrl = this.producto.foto;
-        }
+        this.previewUrl = this.producto.foto;
         console.log("Producto obtenido: ", this.producto);
       }, (error) => {
         alert("Error al obtener el producto para editar");

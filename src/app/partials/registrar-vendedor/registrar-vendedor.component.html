@@ -12,7 +12,7 @@
               <input [(ngModel)]="vendedor.foto" type="file" (change)="onFileSelected($event)" accept="image/*" id="file-input" style="display: none;">
               <button class="btn-primary" type="button" (click)="insertPhoto()" >Añadir foto de perfil</button>
               
-              <button class="btn btn-dark" type="button" (click)="actualizarFoto()">Actualizar foto</button>
+              <button class="btn btn-dark" type="button" (click)="actualizarFoto()" [disabled]="!editar">Actualizar foto</button>
           </div>
           
           <div class="section-right">
@@ -71,4 +71,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 

@@ -17,6 +17,8 @@ import { AdmVendedoresComponent } from './shared/adm-vendedores/adm-vendedores.c
 import { AdmProductosComponent } from './shared/adm-productos/adm-productos.component';
 import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-administradores.component';
 import { ProductoViewComponent } from './components/producto-view/producto-view.component';
+import { ComentariosComponent } from './partials/comentarios/comentarios.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -42,6 +44,8 @@ const routes: Routes = [
   { path: 'adm-administradores', component: AdmAdministradoresComponent, pathMatch: 'full'},
   { path: 'adm-productos', component: AdmProductosComponent, pathMatch: 'full'},
   { path: 'producto-view/:id', component: ProductoViewComponent, pathMatch: 'full'},
+  { path: 'comentarios', component: ComentariosComponent, pathMatch: 'full'},
+  { path: 'perfil/:id', component: PerfilComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

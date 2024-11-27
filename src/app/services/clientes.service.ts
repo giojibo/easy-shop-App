@@ -83,13 +83,41 @@ export class ClientesService {
   public registrarCliente(data: FormData): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/cliente/`,data, httpOptions);
   }
-  public obtenerClienterPorId(id: Number): Observable<any> {
+  public obtenerClientePorId(id: Number): Observable<any> {
     return this.http.get<any>(`${environment.url_api}/cliente/?id=${id}`, httpOptions);
+  }
+
+  public editarCliente(data: any, file?: File): Observable<any> {
+    const formData: FormData = new FormData();
+    const token = this.facadeService.getSessionToken();
+  
+    formData.append('id', data.id.toString());    
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('edad', data.edad.toString());
+    
+    if (file) {
+      formData.append('foto', file); // Cambia 'foto' si el backend espera otro nombre
+    }
+  
+    // Encabezado para la autenticación
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    // Enviar la solicitud sin configurar explícitamente el Content-Type
+    return this.http.put<any>(`${environment.url_api}/cliente-edit/`, formData, { headers });
   }
 
   public obtenerListaClientes (): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.get<any>(`${environment.url_api}/lista-clientes/`, {headers:headers});
+  }
+
+  public eliminarCliente(idUser: number): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.delete<any>(`${environment.url_api}/cliente-edit/?id=${idUser}`,{headers:headers});
   }
 }

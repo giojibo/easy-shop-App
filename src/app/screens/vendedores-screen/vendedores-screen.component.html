@@ -4,6 +4,7 @@
       <mat-icon style="color: black;">account_circle</mat-icon> 
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="verPerfil(vendedor.id)">Mi perfil</button>
       <button mat-menu-item (click)="editarPerfil(vendedor.user.id)">Editar perfil</button>
     </mat-menu>
   </div>

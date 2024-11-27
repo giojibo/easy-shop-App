@@ -52,25 +52,6 @@ html, body {
   flex: 1 1 auto;
 }
 
-.fondo {
-  background: linear-gradient(#895a9c, #a085ab, #d4cfd6);
-  color: white;
-  //min-height: 100vh; /* Asegura que el fondo cubra todo el viewport */
-}
-
-/* Imagen con transición */
-.img {
-  height: auto;
-  width: auto;
-  transition: transform 0.9s ease;
-}
-
-.img:hover {
-  transform: scaleX(0.9) scaleY(0.9);
-  border-radius: 10px;
-  transition-duration: 2s;
-}
-
 /* Estilos para campos de texto y retroalimentación */
 .invalid-feedback {
   display: inline-block !important;
@@ -79,9 +60,4 @@ html, body {
   color: #ff5b5b;
   font-family: Nexa;
   padding-bottom: 10px;
-}
-.dividir
-{
-  font-size: 15px;
-  color: #4a235a;
 }

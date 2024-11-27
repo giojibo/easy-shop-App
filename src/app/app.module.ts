@@ -17,7 +17,7 @@ import { ProductosScreenComponent } from './screens/productos-screen/productos-s
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { ClientesScreenComponent } from './screens/clientes-screen/clientes-screen.component';
 import { RegistrosScreenComponent } from './screens/registros-screen/registros-screen.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BienvenidaComponent } from './screens/bienvenida/bienvenida.component';
 
@@ -50,6 +50,8 @@ import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-ad
 import { EditarProductosComponent } from './modals/editar-productos/editar-productos.component';
 import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar-productos.component';
 import { ProductoViewComponent } from './components/producto-view/producto-view.component';
+import { ComentariosComponent } from './partials/comentarios/comentarios.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 
@@ -79,6 +81,8 @@ import { ProductoViewComponent } from './components/producto-view/producto-view.
     EditarProductosComponent,
     EliminarProductosComponent,
     ProductoViewComponent,
+    ComentariosComponent,
+    PerfilComponent,
 
   ],
   imports: [
@@ -106,7 +110,8 @@ import { ProductoViewComponent } from './components/producto-view/producto-view.
     MatMenuModule,
     MatCardModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    ReactiveFormsModule
     
    
     
