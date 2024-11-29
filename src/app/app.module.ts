@@ -32,6 +32,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -111,7 +113,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     MatCardModule,
     MatGridListModule,
     MatChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
     
    
     

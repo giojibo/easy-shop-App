@@ -92,8 +92,9 @@ export class ProductosService {
     formData.append('precio', data.precio.toString());
     formData.append('descripcion', data.descripcion);
     formData.append('cantidad', data.cantidad.toString());
-    formData.append('entregas', data.entregas.toString());
-
+    // Asegúrate de enviar entregas como JSON
+    formData.append('entregas', JSON.stringify(data.entregas));
+  
     // Si hay una foto, agregarla al FormData
     if (file) {
       formData.append('foto', file);
@@ -107,6 +108,7 @@ export class ProductosService {
     // Enviar la solicitud PUT para editar
     return this.http.put<any>(`${environment.url_api}/producto-edit/`, formData, { headers });
   }
+  
 
   // Obtener lista de productos
   public obtenerListaProductos(): Observable<any> {

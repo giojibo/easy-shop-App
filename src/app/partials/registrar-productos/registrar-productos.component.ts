@@ -26,9 +26,9 @@ export class RegistrarProductoComponent implements OnInit {
   public previewUrl: string = 'assets/images/no-product.jpg';
 
   public entregas:any[]=[
-    {value: '1', nombre:'Ciudad Universitaria (CU)'},
-    {value: '2', nombre:'Complejo Cultural Universitario (CCU)'},
-    {value: '3', nombre:'Ciudad Universitaria 2 (CU2)'},
+    {value: '1', nombre:'Ciudad Universitaria'},
+    {value: '2', nombre:'Complejo Cultural Universitario'},
+    {value: '3', nombre:'Ciudad Universitaria 2'},
 
   ];
 
@@ -47,31 +47,36 @@ export class RegistrarProductoComponent implements OnInit {
       this.obtenerProductoPorId();
     } else {
       this.producto = this.ProductosService.esquemaProducto();
-      this.producto.entregas = this.producto.entregas || [];
+      this.producto.entregas = this.producto.entregas || []; // Asegura que entregas sea un arreglo
     }
     console.log("Producto: ", this.producto);
   }
-  
 
   public regresar() {
     this.location.back();
   }
 
-  checkboxChange(event: any) {
-    const nombre = event.source.value;
-
+  checkboxChange(event: any): void {
+    const value = event.source.value;
+  
+    // Asegura que entregas sea un arreglo
+    if (!Array.isArray(this.producto.entregas)) {
+      this.producto.entregas = [];
+    }
+  
     if (event.checked) {
-      // Verificar si ya está en el array antes de agregar
-      if (!this.revisarSeleccion(nombre)) {
-        this.producto.entregas.push(nombre);
+      // Agrega solo si no existe
+      if (!this.revisarSeleccion(value)) {
+        this.producto.entregas.push(value);
       }
     } else {
-      // Eliminar el elemento del array
-      this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== nombre);
+      // Elimina el valor del array
+      this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== value);
     }
-
-    console.log("Array entregas: ", this.producto.entregas);
+  
+    console.log("Array entregas actualizado: ", this.producto.entregas);
   }
+  
 
   
   
@@ -109,16 +114,10 @@ export class RegistrarProductoComponent implements OnInit {
   }
 }
 
-public revisarSeleccion(nombre: string) {
-  if (this.producto.entregas) {
-    return this.producto.entregas.indexOf(nombre) !== -1;
-  }
-  return false;
+public revisarSeleccion(value: string): boolean {
+  // Verifica si el valor existe en el array
+  return this.producto.entregas.includes(value);
 }
-
-
-
-
 
   actualizarProducto() {
     this.errors = []; 
@@ -191,7 +190,7 @@ public revisarSeleccion(nombre: string) {
   }
   
   
-  public obtenerProductoPorId(): void {
+ /* public obtenerProductoPorId(): void {
     this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
       response => {
         this.producto = response;
@@ -201,7 +200,27 @@ public revisarSeleccion(nombre: string) {
         alert("Error al obtener el producto para editar");
       }
     );
+  }*/
+
+    public obtenerProductoPorId(): void {
+      this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
+        response => {
+          this.producto = response;
+          // Asegurarse de que entregas sea un arreglo
+          this.producto.entregas = Array.isArray(this.producto.entregas) ? this.producto.entregas : JSON.parse(this.producto.entregas || '[]');
+          this.previewUrl = this.producto.foto;
+          console.log("Producto obtenido: ", this.producto);
+        },
+        error => {
+          alert("Error al obtener el producto para editar");
+        }
+      );
+    }
+    
+  // Convertir los valores de entregas a nombres
+  getEntregaNombre(entregaValue: string): string {
+    const entrega = this.entregas.find(ent => ent.value === entregaValue);
+    return entrega ? entrega.nombre : '';
   }
-  
   
 }

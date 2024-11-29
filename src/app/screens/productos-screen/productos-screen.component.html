@@ -2,15 +2,5 @@
   <div class="header-home">
     <app-navbar></app-navbar>
   </div>
-  
-  <div class="body-alumnos">
-    <h1>Listado de productos</h1>
-    <div class="container mt-5 mb-5">
-      <div class="row product-grid" *ngIf="lista_productos.length > 0">
-        <div class="col-12 col-sm-6 col-md-4 col-lg-2 product-item" *ngFor="let producto of lista_productos">
-          <app-card [producto]="producto"></app-card>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-card></app-card>
 </div>

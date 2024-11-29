@@ -1,32 +1,26 @@
-<mat-card class="product-card">
-  <!-- Título y Precio -->
-  <mat-card-header class="card-header">
-    <mat-card-title>{{ producto.nombre }}</mat-card-title>
-    <mat-card-subtitle class="price">{{ producto.precio | currency: 'MXN' }}</mat-card-subtitle>
-  </mat-card-header>
-
-  <!-- Imagen del producto -->
-  <img mat-card-image [src]="previewUrl" alt="Imagen del producto" class="product-image" />
-
-  <!-- Detalles del producto -->
-  <mat-card-content class="card-content">
-    <h2>Entregas:</h2>
-    <mat-chip-listbox>
-      <mat-chip *ngFor="let entrega of producto.entregas.split(',')" class="chip">
-        {{ entrega }}
-      </mat-chip>
-    </mat-chip-listbox>
-  </mat-card-content>
-
-  <!-- Acciones del producto -->
-  <mat-divider></mat-divider>
-  <mat-card-actions class="card-actions">
-    <button mat-button color="primary" (click)="goEditar(producto.id)">
-      <mat-icon>edit</mat-icon> Editar
-    </button>
-    <span class="spacer"></span>
-    <button mat-button (click)="verProducto(producto.id)">
-      <mat-icon>more_horiz</mat-icon> Más
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div class="body-alumnos">
+  <h1>Listado de productos</h1>
+  <div class="container mt-5 mb-5">
+    <div class="row product-grid" *ngIf="lista_productos.length > 0">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2 product-item" *ngFor="let producto of lista_productos">
+        <mat-card class="product-card">
+          <mat-card-header class="card-header">
+            <mat-card-title>{{ producto?.nombre }}</mat-card-title>
+            <mat-card-subtitle class="price">{{ producto?.precio | currency: 'MXN' }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="producto.foto" alt="Imagen del producto" class="product-image" />
+          <mat-divider></mat-divider>
+          <mat-card-actions class="card-actions">
+            <button *ngIf="token && rol=='vendedor' || rol=='administrador'" mat-button color="primary" (click)="goEditar(producto.id) ">
+              <mat-icon>edit</mat-icon> Editar
+            </button>
+            <span class="spacer"></span>
+            <button mat-button (click)="verProducto(producto.id)">
+              <mat-icon>more_horiz</mat-icon> Más
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
