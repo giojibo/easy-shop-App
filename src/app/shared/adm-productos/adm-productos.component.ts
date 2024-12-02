@@ -25,7 +25,7 @@ export class AdmProductosComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns: string[] = ['id','nombre','descripcion', 'precio', 'unidades', 'entregas', 'editar', 'eliminar'];
+  displayedColumns: string[] = ['id','nombre','descripcion', 'precio', 'cantidad', 'entregas', 'editar', 'eliminar'];
   dataSource = new MatTableDataSource<Producto>(this.lista_productos as Producto[]);
   
   constructor(

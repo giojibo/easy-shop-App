@@ -17,7 +17,9 @@ declare var $:any;
 })
 export class RegistrarProductoComponent implements OnInit {
 
-  public producto: any = {};
+  public producto: any = {
+    entregas: [],
+  };
   public errors: any = {};
   public editar: boolean = false;
   public idProducto: Number = 0;
@@ -76,10 +78,6 @@ export class RegistrarProductoComponent implements OnInit {
   
     console.log("Array entregas actualizado: ", this.producto.entregas);
   }
-  
-
-  
-  
   
   public registrarProducto() {
 
@@ -188,19 +186,6 @@ public revisarSeleccion(value: string): boolean {
       console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del producto");
     }
   }
-  
-  
- /* public obtenerProductoPorId(): void {
-    this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
-      response => {
-        this.producto = response;
-        this.previewUrl = this.producto.foto;
-        console.log("Producto obtenido: ", this.producto);
-      }, (error) => {
-        alert("Error al obtener el producto para editar");
-      }
-    );
-  }*/
 
     public obtenerProductoPorId(): void {
       this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(

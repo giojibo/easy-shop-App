@@ -77,8 +77,8 @@ export class ValidatorService {
     return pat.test(input);
   }
 
-  institutionalEmail(value: string, domains: string[]): boolean {
+  /*institutionalEmail(value: string, domains: string[]): boolean {
     const domain = value.split('@')[1];
     return domains.includes(domain);
-  }
+  }*/
 }
