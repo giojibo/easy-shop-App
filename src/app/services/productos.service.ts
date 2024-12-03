@@ -82,18 +82,17 @@ export class ProductosService {
     return this.http.get<any>(`${environment.url_api}/producto/?id=${id}`, httpOptions);
   }
 
-  // Edición de producto con foto opcional
   public editarProducto(data: any, file?: File): Observable<any> {
     const formData: FormData = new FormData();
     const token = this.facadeService.getSessionToken();
-  
-    formData.append('id', data.id.toString());
-    formData.append('nombre', data.nombre);
-    formData.append('precio', data.precio.toString());
-    formData.append('descripcion', data.descripcion);
-    formData.append('cantidad', data.cantidad.toString());
-    // Asegúrate de enviar entregas como JSON
-    formData.append('entregas', JSON.stringify(data.entregas));
+    
+    // Validación de los datos antes de enviar
+    formData.append('id', data.id ? data.id.toString() : '');  // Asegúrate de que 'id' esté presente
+    formData.append('nombre', data.nombre || '');  // Asegura que nombre no sea undefined
+    formData.append('precio', data.precio !== undefined ? data.precio.toString() : '0'); // Valor predeterminado para precio
+    formData.append('descripcion', data.descripcion || '');  // Valor predeterminado para descripción
+    formData.append('cantidad', data.cantidad !== undefined ? data.cantidad.toString() : '0'); // Valor predeterminado para cantidad
+    formData.append('entregas', data.entregas ? JSON.stringify(data.entregas) : '[]');  // Valor predeterminado para entregas
   
     // Si hay una foto, agregarla al FormData
     if (file) {
@@ -108,6 +107,7 @@ export class ProductosService {
     // Enviar la solicitud PUT para editar
     return this.http.put<any>(`${environment.url_api}/producto-edit/`, formData, { headers });
   }
+  
   
 
   // Obtener lista de productos

@@ -161,31 +161,34 @@ public revisarSeleccion(value: string): boolean {
     document.getElementById('file-input')?.click();
   }
 
-  public actualizarFoto(): void {
-    if (this.selectedFile && this.producto?.id) {
-      const formData = new FormData();
-      
-      formData.append('id', this.producto.id.toString());
-      formData.append('nombre', this.producto.nombre || ''); // Valor predeterminado si no existe
-      formData.append('precio', this.producto.precio?.toString() || '0'); // Asegura que precio no sea undefined
-      formData.append('cantidad', this.producto.cantidad?.toString() || '0'); // Asegura que cantidad no sea undefined
-      formData.append('entregas', JSON.stringify(this.producto.entregas || [])); // Predetermina entregas a un arreglo vacío
-      formData.append('foto', this.selectedFile);
+  actualizarFoto(): void {
+    if (this.selectedFile && this.producto.id) {
+      const data = {
+        id: this.producto.id,
+        nombre: this.producto.nombre,
+        precio: this.producto.precio,
+        descripcion: this.producto.descripcion,
+        cantidad: this.producto.cantidad,
+        entregas: this.producto.entregas
+      };
   
-      this.ProductosService.editarProducto(formData).subscribe(
+      // Llamamos al servicio editarProducto, pasando los datos y el archivo
+      this.ProductosService.editarProducto(data, this.selectedFile).subscribe(
         (response) => {
-          console.log("Foto actualizada exitosamente: ", response);
-          this.producto = response; // Refresca los datos del producto
-          window.location.reload(); // Recarga la página
+          console.log("Producto actualizado exitosamente: ", response);
+          this.producto = response; // Refrescar los datos para mostrar la imagen actualizada
+          window.location.reload(); // Recargar la página para reflejar los cambios
         },
         (error) => {
-          console.error("Error al actualizar la foto", error);
+          console.error("Error al actualizar el producto", error);
         }
       );
     } else {
       console.warn("No se ha seleccionado ningún archivo o no se ha encontrado el ID del producto");
     }
   }
+  
+  
 
     public obtenerProductoPorId(): void {
       this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
