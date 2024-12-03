@@ -33,15 +33,17 @@
                 <h2>Lugar de entregas:</h2>
                 <p>
                     <mat-chip-listbox>
-                        <mat-chip *ngFor="let name of producto.entregas.split(',') | slice:0:3">
-                            {{ name }}
+                        <mat-chip *ngFor="let name of entregasSeleccionadas" [matTooltip]="name" color="primary">
+                          <a [href]="getEnlace(name)" target="_blank">
+                            <button mat-button>{{ name }}</button>
+                          </a>
                         </mat-chip>
-                    </mat-chip-listbox>
+                      </mat-chip-listbox>
                 </p>
             </mat-card-content>
             <mat-card-content>
                 <h2>Dejar comentarios</h2>
-                <app-comentarios [productoId]="producto.id"></app-comentarios>
+                 
             </mat-card-content>
             <button mat-button color="warn" class="action-button" (click)="regresar()">Regresar</button>
         </mat-card>

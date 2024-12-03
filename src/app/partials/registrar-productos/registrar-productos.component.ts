@@ -17,7 +17,9 @@ declare var $:any;
 })
 export class RegistrarProductoComponent implements OnInit {
 
-  public producto: any = {};
+  public producto: any = {
+    entregas: [],
+  };
   public errors: any = {};
   public editar: boolean = false;
   public idProducto: Number = 0;
@@ -26,9 +28,9 @@ export class RegistrarProductoComponent implements OnInit {
   public previewUrl: string = 'assets/images/no-product.jpg';
 
   public entregas:any[]=[
-    {value: '1', nombre:'Ciudad Universitaria (CU)'},
-    {value: '2', nombre:'Complejo Cultural Universitario (CCU)'},
-    {value: '3', nombre:'Ciudad Universitaria 2 (CU2)'},
+    {value: '1', nombre:'Ciudad Universitaria'},
+    {value: '2', nombre:'Complejo Cultural Universitario'},
+    {value: '3', nombre:'Ciudad Universitaria 2'},
 
   ];
 
@@ -47,34 +49,35 @@ export class RegistrarProductoComponent implements OnInit {
       this.obtenerProductoPorId();
     } else {
       this.producto = this.ProductosService.esquemaProducto();
-      this.producto.entregas = this.producto.entregas || [];
+      this.producto.entregas = this.producto.entregas || []; // Asegura que entregas sea un arreglo
     }
     console.log("Producto: ", this.producto);
   }
-  
 
   public regresar() {
     this.location.back();
   }
 
-  checkboxChange(event: any) {
-    const nombre = event.source.value;
-
+  checkboxChange(event: any): void {
+    const value = event.source.value;
+  
+    // Asegura que entregas sea un arreglo
+    if (!Array.isArray(this.producto.entregas)) {
+      this.producto.entregas = [];
+    }
+  
     if (event.checked) {
-      // Verificar si ya está en el array antes de agregar
-      if (!this.revisarSeleccion(nombre)) {
-        this.producto.entregas.push(nombre);
+      // Agrega solo si no existe
+      if (!this.revisarSeleccion(value)) {
+        this.producto.entregas.push(value);
       }
     } else {
-      // Eliminar el elemento del array
-      this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== nombre);
+      // Elimina el valor del array
+      this.producto.entregas = this.producto.entregas.filter((entrega: any) => entrega !== value);
     }
-
-    console.log("Array entregas: ", this.producto.entregas);
+  
+    console.log("Array entregas actualizado: ", this.producto.entregas);
   }
-
-  
-  
   
   public registrarProducto() {
 
@@ -109,16 +112,10 @@ export class RegistrarProductoComponent implements OnInit {
   }
 }
 
-public revisarSeleccion(nombre: string) {
-  if (this.producto.entregas) {
-    return this.producto.entregas.indexOf(nombre) !== -1;
-  }
-  return false;
+public revisarSeleccion(value: string): boolean {
+  // Verifica si el valor existe en el array
+  return this.producto.entregas.includes(value);
 }
-
-
-
-
 
   actualizarProducto() {
     this.errors = []; 
@@ -164,25 +161,26 @@ public revisarSeleccion(nombre: string) {
     document.getElementById('file-input')?.click();
   }
 
-  public actualizarFoto(): void {
-    if (this.selectedFile && this.producto?.id) {
-      const formData = new FormData();
-      
-      formData.append('id', this.producto.id.toString());
-      formData.append('nombre', this.producto.nombre || ''); // Valor predeterminado si no existe
-      formData.append('precio', this.producto.precio?.toString() || '0'); // Asegura que precio no sea undefined
-      formData.append('cantidad', this.producto.cantidad?.toString() || '0'); // Asegura que cantidad no sea undefined
-      formData.append('entregas', JSON.stringify(this.producto.entregas || [])); // Predetermina entregas a un arreglo vacío
-      formData.append('foto', this.selectedFile);
+  actualizarFoto(): void {
+    if (this.selectedFile && this.producto.id) {
+      const data = {
+        id: this.producto.id,
+        nombre: this.producto.nombre,
+        precio: this.producto.precio,
+        descripcion: this.producto.descripcion,
+        cantidad: this.producto.cantidad,
+        entregas: this.producto.entregas
+      };
   
-      this.ProductosService.editarProducto(formData).subscribe(
+      // Llamamos al servicio editarProducto, pasando los datos y el archivo
+      this.ProductosService.editarProducto(data, this.selectedFile).subscribe(
         (response) => {
-          console.log("Foto actualizada exitosamente: ", response);
-          this.producto = response; // Refresca los datos del producto
-          window.location.reload(); // Recarga la página
+          console.log("Producto actualizado exitosamente: ", response);
+          this.producto = response; // Refrescar los datos para mostrar la imagen actualizada
+          window.location.reload(); // Recargar la página para reflejar los cambios
         },
         (error) => {
-          console.error("Error al actualizar la foto", error);
+          console.error("Error al actualizar el producto", error);
         }
       );
     } else {
@@ -191,17 +189,26 @@ public revisarSeleccion(nombre: string) {
   }
   
   
-  public obtenerProductoPorId(): void {
-    this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
-      response => {
-        this.producto = response;
-        this.previewUrl = this.producto.foto;
-        console.log("Producto obtenido: ", this.producto);
-      }, (error) => {
-        alert("Error al obtener el producto para editar");
-      }
-    );
+
+    public obtenerProductoPorId(): void {
+      this.ProductosService.obtenerProductoPorId(this.idProducto).subscribe(
+        response => {
+          this.producto = response;
+          // Asegurarse de que entregas sea un arreglo
+          this.producto.entregas = Array.isArray(this.producto.entregas) ? this.producto.entregas : JSON.parse(this.producto.entregas || '[]');
+          this.previewUrl = this.producto.foto;
+          console.log("Producto obtenido: ", this.producto);
+        },
+        error => {
+          alert("Error al obtener el producto para editar");
+        }
+      );
+    }
+    
+  // Convertir los valores de entregas a nombres
+  getEntregaNombre(entregaValue: string): string {
+    const entrega = this.entregas.find(ent => ent.value === entregaValue);
+    return entrega ? entrega.nombre : '';
   }
-  
   
 }

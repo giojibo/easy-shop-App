@@ -50,11 +50,16 @@
                     <label class="title-dias" >Selecciona los lugares de entrega</label>
                   </div>
                 </div>
-                <div class="checkbox-group" *ngFor="let entrega of entregas; let i = index">
-                  <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{entrega.nombre}}" [checked]="revisarSeleccion(entrega.nombre)">
-                      <div class="d-checkbox-nombre">{{entrega.nombre}}</div>
+                <div *ngFor="let entrega of entregas">
+                  <mat-checkbox
+                    [checked]="producto.entregas.includes(entrega.value)"
+                    (change)="checkboxChange($event)"
+                    [value]="entrega.value">
+                    {{ entrega.nombre }}
                   </mat-checkbox>
                 </div>
+                
+                
                 <div *ngIf="errors.entregas" class="invalid-feedback">{{errors.entregas}}</div>
               </div>
 

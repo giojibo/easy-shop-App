@@ -13,7 +13,7 @@
       <div class="container">
         <div class="row mt-3 mb-5" style="text-align: center;">
           <div class="col-12">
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-custom" role="alert">
               <span class="title-table">Lista de productos registrados</span>
             </div>
           </div>
@@ -45,9 +45,9 @@
                   <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
               </ng-container>
   
-              <ng-container matColumnDef="unidades">
-                  <th mat-header-cell *matHeaderCellDef> Unidades </th>
-                  <td mat-cell *matCellDef="let element"> {{element.unidades}} </td>
+              <ng-container matColumnDef="cantidad">
+                  <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                  <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
               </ng-container>
   
               <ng-container matColumnDef="entregas">

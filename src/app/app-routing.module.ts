@@ -19,33 +19,35 @@ import { AdmAdministradoresComponent } from './shared/adm-administradores/adm-ad
 import { ProductoViewComponent } from './components/producto-view/producto-view.component';
 import { ComentariosComponent } from './partials/comentarios/comentarios.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { AuthGuard } from './guard/auth.guard';
+import { publicGuard } from './guard/public.guard';
 
 
 const routes: Routes = [
-  { path: '', component: BienvenidaComponent, pathMatch: 'full'},
-  { path: 'home', component: HomeScreenComponent, pathMatch: 'full'},
-  { path: 'login', component: LoginScreenComponent, pathMatch: 'full'},
-  { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full'},
-  { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full'},
-  { path: 'registro-cliente', component: RegistrarClienteComponent, pathMatch: 'full'},
+  { path: '', component: BienvenidaComponent, pathMatch: 'full', canActivate: [publicGuard]},
+  { path: 'home', component: HomeScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'login', component: LoginScreenComponent, pathMatch: 'full', canActivate: [publicGuard] },
+  { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full', canActivate: [publicGuard]},
+  { path: 'registro-cliente', component: RegistrarClienteComponent, pathMatch: 'full', canActivate: [publicGuard]},
   { path: 'registro-producto', component: RegistrarProductoComponent, pathMatch: 'full'},
-  { path: 'registro-producto/:id', component: RegistrarProductoComponent, pathMatch: 'full'},
-  { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full'},
-  { path: 'clientes', component: ClientesScreenComponent, pathMatch: 'full'},
-  { path: 'clientes/:rol/:id', component: ClientesScreenComponent, pathMatch: 'full'},
-  { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full'},
-  { path: 'vendedores/:rol/:id', component: VendedoresScreenComponent, pathMatch: 'full'},
+  { path: 'registro-producto/:id', component: RegistrarProductoComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'clientes', component: ClientesScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'clientes/:rol/:id', component: ClientesScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'vendedores', component: VendedoresScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'vendedores/:rol/:id', component: VendedoresScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
   { path: 'productos', component: ProductosScreenComponent, pathMatch: 'full'},
   { path: 'productos:id', component: ProductosScreenComponent, pathMatch: 'full'},
-  { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full'},
-  { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full'},
-  { path: 'adm-clientes', component: AdmClientesComponent, pathMatch: 'full'},
-  { path: 'adm-vendedores', component: AdmVendedoresComponent, pathMatch: 'full'},
-  { path: 'adm-administradores', component: AdmAdministradoresComponent, pathMatch: 'full'},
-  { path: 'adm-productos', component: AdmProductosComponent, pathMatch: 'full'},
+  { path: 'registros', component: RegistrosScreenComponent, pathMatch: 'full', canActivate: [publicGuard]},
+  { path: 'registros/:rol/:id', component: RegistrosScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'adm-clientes', component: AdmClientesComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'adm-vendedores', component: AdmVendedoresComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'adm-administradores', component: AdmAdministradoresComponent, pathMatch: 'full', canActivate:[AuthGuard]},
+  { path: 'adm-productos', component: AdmProductosComponent, pathMatch: 'full', canActivate:[AuthGuard]},
   { path: 'producto-view/:id', component: ProductoViewComponent, pathMatch: 'full'},
   { path: 'comentarios', component: ComentariosComponent, pathMatch: 'full'},
-  { path: 'perfil/:id', component: PerfilComponent, pathMatch: 'full'},
+  { path: 'perfil/:id', component: PerfilComponent, pathMatch: 'full', canActivate:[AuthGuard]},
 ];
 
 @NgModule({

@@ -58,8 +58,6 @@ export class ClientesService {
       error["email"] = this.errorService.max(40);
     }else if (!this.validatorService.email(data['email'])) {
       error["email"] = this.errorService.email;
-    }else if(this.validatorService.institutionalEmail(data['email'],['alumno.buap.mx','alm.buap.mx'])){
-      error["email"] = this.errorService.institucionalEmail;
     }
 
     if(!editar){
