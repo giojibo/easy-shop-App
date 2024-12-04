@@ -54,6 +54,7 @@ import { EliminarProductosComponent } from './modals/eliminar-productos/eliminar
 import { ProductoViewComponent } from './components/producto-view/producto-view.component';
 import { ComentariosComponent } from './partials/comentarios/comentarios.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 
 
 
@@ -85,6 +86,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     ProductoViewComponent,
     ComentariosComponent,
     PerfilComponent,
+    PerfilClienteComponent,
 
   ],
   imports: [

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdministradoresService } from 'src/app/services/administradores.service';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarUserComponent } from 'src/app/modals/editar-user/editar-user.component';
 
 declare var $:any;
 
@@ -35,6 +37,7 @@ constructor(
   public activatedRoute: ActivatedRoute,
   private administradoresService: AdministradoresService,
   private facadeService: FacadeService,
+  public dialog: MatDialog,
   
 ){}
 
@@ -119,4 +122,32 @@ ngOnInit(): void {
       this.hide_2 = false;
     }
   }
+
+  public actualizar() {
+    this.errors = []; 
+    this.errors = this.administradoresService.validarAdmin(this.admin, this.editar);
+
+    if (!$.isEmptyObject(this.errors)) {
+      return;
+    }
+    console.log("Pasó la validación");
+
+    const dialogRef = this.dialog.open(EditarUserComponent,{
+      data: { id: this.admin, rol: 'administrador' }, // Pasar valores al componente modal
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.isEdit) {
+        console.log("Administrador editado");
+        // Recargar página o redirigir al home
+        this.router.navigate(["home"]);
+      } else {
+        alert("Administrador no editado ");
+        console.log("No se editó el administrador");
+      }
+    });
+  }
+  
 }

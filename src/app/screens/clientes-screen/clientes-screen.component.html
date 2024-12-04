@@ -1,23 +1,23 @@
 <section class="bienvenida">
-    <div class="toggle-menu">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon style="color: black;">account_circle</mat-icon> 
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="editarPerfil(clientes.user.id)">Editar perfil</button>
-      </mat-menu>
-    </div>
-    
-    <div class="contenido-bienvenida" *ngIf="clientes?.user?.first_name">
-      <h1>Hola {{clientes.user?.first_name}} {{clientes.user?.last_name}}</h1>
-      <p>
-        Esta es la bienvenida a tu página de cliente, aquí podrás <br>
-        ver los productos y editar tu perfil. En la<br>
-        barra de navegación podrás ver tus opciones.<br>
-        Navega y explora nuevos productos que los <br>
-        vendedores han puesto para ti.
-      </p>
-      
-    </div>
-  </section>
+  <div class="toggle-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon style="color: rgb(252, 252, 252);">account_circle</mat-icon> 
+    </button>
+    <mat-menu #menu="matMenu">
+ 
+      <button mat-menu-item (click)="verPerfil(clientes.id)">Mi perfil</button>
+      <button mat-menu-item (click)="editarPerfil(clientes.user.id)">Editar perfil</button>
+    </mat-menu>
+  </div>
   
+  <div class="contenido-bienvenida" *ngIf="clientes?.user?.first_name">
+    <h1>Hola {{clientes.user?.first_name}} {{clientes.user?.last_name}}</h1>
+    <p>
+      Esta es la bienvenida a tu página de cliente, aquí podrás <br>
+      ver los productos y editar tu perfil. En la<br>
+      barra de navegación podrás ver tus opciones.<br>
+      Navega y explora nuevos productos que los <br>
+      vendedores han puesto para ti.
+    </p>
+  </div>
+  </section>

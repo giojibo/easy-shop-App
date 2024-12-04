@@ -46,6 +46,7 @@ export class NavbarComponent implements OnInit {
       (response)=>{
         console.log("Entró");
         this.facadeService.destroyUser();
+        localStorage.clear();
         //Navega al login
         this.router.navigate([""]);
       }, (error)=>{

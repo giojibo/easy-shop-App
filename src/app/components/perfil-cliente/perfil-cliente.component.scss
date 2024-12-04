@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+
+/* Header */
+.header-card {
+    width: 100%;
+    background-color: #c955db; /* Azul más elegante */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de detalles */
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Tarjeta izquierda (foto de perfil) */
+.card-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #f3f4f6; /* Fondo más claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 45%;
+}
+
+/* Imagen */
+.image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tarjeta de información */
+.info-card {
+    background-color: #f3f4f6; /* Fondo más claro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Encabezado de datos */
+.datos {
+    color: #2563eb; /* Azul más elegante */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Lista de detalles */
+.details {
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+    color: #555; /* Gris oscuro */
+}
+
+.details li {
+    margin-bottom: 15px;
+}
+
+/* Botón regresar */
+button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: white; /* Rojo más oscuro */
+    color: #ef4444;
+    border: none;
+    border-radius: 5px;
+    margin-right: 180px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ef4444; /* Rojo más oscuro */
+    color: white;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+}

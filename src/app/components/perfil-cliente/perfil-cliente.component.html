@@ -1,0 +1,35 @@
+<div *ngIf="clientes" class="grid-p2 container">
+    <mat-card class="header-card">
+        <h1>Información del cliente </h1>
+    </mat-card>
+
+    <div class="details-container">
+        <mat-card class="card-left">
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Foto de perfil</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <img [src]="clientes.foto" class="image">
+        </mat-card>
+
+        <mat-card class="info-card">
+            <mat-card-header class="datos">
+                <mat-card-title>Datos personales</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul class="details">
+                    <li>Nombre: {{clientes.user.first_name}} {{clientes.user.last_name}}</li>
+                    <li>Email: {{clientes.user.email}}</li>
+                    <li>Edad: {{clientes.edad}}</li>
+                </ul>
+            </mat-card-content>
+            <mat-card-content>
+                <button mat-button color="warn" (click)="regresar()">Regresar</button>
+                
+                <button mat-button color="primary" (click)="eliminar(clientes.id)">Eliminar cuenta</button>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

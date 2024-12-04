@@ -84,13 +84,6 @@ export class RegistrarProductoComponent implements OnInit {
     this.errors = []; 
     this.errors = this.ProductosService.validarProducto(this.producto, this.editar);
 
-    if(!this.selectedFile)
-    {
-      this.producto.foto = 'assets/images/no-product.jpg';
-    }
-
-    else{
-
     const formData = new FormData();
     formData.append('nombre', this.producto.nombre);
     formData.append('precio', this.producto.precio);
@@ -110,7 +103,7 @@ export class RegistrarProductoComponent implements OnInit {
       }
     );
   }
-}
+
 
 public revisarSeleccion(value: string): boolean {
   // Verifica si el valor existe en el array
@@ -162,7 +155,7 @@ public revisarSeleccion(value: string): boolean {
   }
 
   actualizarFoto(): void {
-    if (this.selectedFile && this.producto.id) {
+    if (this.producto.foto && this.producto.id) {
       const data = {
         id: this.producto.id,
         nombre: this.producto.nombre,

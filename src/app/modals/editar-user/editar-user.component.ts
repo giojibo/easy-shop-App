@@ -47,8 +47,8 @@ export class EditarUserComponent {
           this.dialogRef.close({isEdit:false})
         }
       );
-    }/*else if(this.rol == "clientes"){
-      this.alumnosService.editarAlumno(this.data.id).subscribe(
+    }else if(this.rol == "cliente"){
+      this.clientesService.editarCliente(this.data.id).subscribe(
         (response)=>{
           console.log(response);
           this.dialogRef.close({isEdit:true});
@@ -56,6 +56,6 @@ export class EditarUserComponent {
           this.dialogRef.close({isEdit:false});
         }
       );
-    }*/
+    }
   }
 }

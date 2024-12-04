@@ -48,6 +48,12 @@ export class ClientesScreenComponent implements OnInit{
   {
     this.router.navigate(["registros/cliente/"+iduser]);
   }
+
+  public verPerfil(iduser: Number)
+  {
+    this.router.navigate(["perfil-cliente/"+iduser])
+  }
+
   
 
 }

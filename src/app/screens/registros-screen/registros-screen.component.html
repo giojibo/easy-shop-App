@@ -27,7 +27,7 @@
       <!-- Formularios -->
       <section class="forms-registro" >
         <!-- Formulario del admin -->
-        <section class="registrar-admin" *ngIf="isAdmin && rol!='administrador'" >
+        <section class="registrar-admin" *ngIf="isAdmin && rol=='administrador'" >
           <app-registrar-admin [rol]="tipo_user" [datos_user]="user"></app-registrar-admin>
         </section>
         <!-- Formulario del Cliente -->
