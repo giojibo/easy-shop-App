@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Producto } from 'src/app/interfaces/producto.interfaces';
 import { FacadeService } from 'src/app/services/facade.service';
 import { ProductosService } from 'src/app/services/productos.service';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,7 @@ export class CardComponent implements OnInit {
   public previewUrl: string = '/assets/images/no-product.jpg';  // Imagen predeterminada
   @Input() datos_productos: any = []; 
   public lista_productos: Producto[] = [];
-  public url: string = 'http://127.0.0.1:8000';
+  public url: string = environment.url_api;
   token: string = "";
   rol: string = "";
 

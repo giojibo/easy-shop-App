@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: '', component: BienvenidaComponent, pathMatch: 'full', canActivate: [publicGuard]},
   { path: 'home', component: HomeScreenComponent, pathMatch: 'full', canActivate:[AuthGuard]},
   { path: 'login', component: LoginScreenComponent, pathMatch: 'full', canActivate: [publicGuard] },
-  { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full', canActivate:[publicGuard]},
+  { path: 'registro-admin', component: RegistrarAdminComponent, pathMatch: 'full'},
   { path: 'registro-vendedor', component: RegistrarVendedorComponent, pathMatch: 'full', canActivate: [publicGuard]},
   { path: 'registro-cliente', component: RegistrarClienteComponent, pathMatch: 'full', canActivate: [publicGuard]},
   { path: 'registro-producto', component: RegistrarProductoComponent, pathMatch: 'full'},
